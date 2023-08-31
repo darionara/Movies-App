@@ -3,18 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --primary-color: #fff;
-  --secondary-color: #1E1E21;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-color: #1E1E21;
-    --secondary-color: #fff;
-  }
+  --primary-color: #D02C1E;
+  --secondary-color: #272728;
+  --background-color: #1E1E21;
+  --text-color: #fff;
 }
 
 body {
-  color: var(--primary-color);
-  background: var(--secondary-color); 
+  color: var(--text-color);
+  background: var(--background-color);
 }
