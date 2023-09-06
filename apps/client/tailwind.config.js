@@ -9,11 +9,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'primary-color': 'var(--primary-color)',
-        'secondary-color': 'var(--secondary-color)',
+        'primary': 'var(--primary-color)',
+        'secondary': 'var(--secondary-color)',
         'background-color': 'var(--background-color)',
         'text-color': 'var(--text-color)',
         'dark-red': '#AD2418',
+        'input-color': '#0F0F10',
       },
       /* fontFamily: {
         sans: ['var(--font-open-sans'],

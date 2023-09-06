@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 }
 
 const open_sans = Open_Sans({
-  subsets: [ 'latin' ],
+  subsets: ['latin'],
   display: 'swap',
-  variable: '--font-open-sans'
+  variable: '--font-open-sans',
 })
 
 export default function RootLayout({

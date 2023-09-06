@@ -24,14 +24,14 @@ const getSizeClasses = (size: 'small' | 'medium' | 'large'): string => {
 
 const getModeClasses = (isPrimary: boolean): string =>
   isPrimary
-    ? 'text-text-color bg-primary-color hover:bg-dark-red'
-    : 'text-white/50 bg-secondary-color hover:text-text-color'
+    ? 'text-text-color bg-primary hover:bg-dark-red'
+    : 'text-white/50 bg-secondary hover:text-text-color'
 
 const BASE_BUTTON_CLASSES =
-  'cursor-pointer rounded-md leading-normal inline-block transition-colors duration-200 transition-ease-in-out'
+  'cursor-pointer rounded-md leading-normal inline-block transition-colors duration-100 transition-ease-in-out'
 
 export const Button = ({
-  primary = false,
+  primary = true,
   size = 'medium',
   label,
   ...props
