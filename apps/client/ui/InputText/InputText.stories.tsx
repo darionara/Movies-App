@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
-
 import { InputText } from './InputText'
 
 const meta = {
-  title: 'Atoms/InputText',
+  title: 'Components/InputText',
   component: InputText,
   parameters: {
     layout: 'centered',

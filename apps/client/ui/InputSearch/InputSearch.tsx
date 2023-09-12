@@ -1,13 +1,11 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, FC } from 'react'
 import clsx from 'clsx'
-import {
-  BASE_INPUT_CLASSES,
-  InputProps,
-  getSizeClasses,
-} from '../InputText/InputText'
+import { InputProps } from '@types/InputType'
+import { getSizeClasses } from '@utils/getSizeClasses'
+import { BASE_INPUT_CLASSES } from '@styles/InputStyles'
 import { SearchIcon } from '../Icons/Search/Search'
 
-export const InputSearch = ({
+export const InputSearch: FC<InputProps> = ({
   size = 'medium',
   placeholder = 'Search',
   ...props
