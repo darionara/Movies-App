@@ -8,11 +8,6 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  argTypes: {
-    size: {
-      options: ['large', 'medium', 'small'],
-    },
-  },
 } satisfies Meta<typeof InputText>
 
 export default meta

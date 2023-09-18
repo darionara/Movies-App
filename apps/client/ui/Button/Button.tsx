@@ -4,20 +4,18 @@ import clsx from 'clsx'
 type ButtonProps = ComponentPropsWithoutRef<'button'> & {
   variant?: 'primary' | 'secondary'
   size?: 'small' | 'medium' | 'large'
-  children: string
-  onClick?: () => void
 }
 
 const getSizeClasses = (size: ButtonProps['size']): string => {
   switch (size) {
     case 'small': {
-      return 'px-16 py-3'
+      return 'px-3 py-2.5 text-sm'
     }
     case 'large': {
-      return 'px-32 py-4'
+      return 'px-6 py-5'
     }
     default: {
-      return 'px-24 py-3.5'
+      return 'px-4 py-3.5'
     }
   }
 }
@@ -28,25 +26,22 @@ const getModeClasses = (variant: ButtonProps['variant']): string =>
     : 'text-white/50 bg-secondary hover:text-text-color w-full'
 
 const BASE_BUTTON_CLASSES =
-  'cursor-pointer rounded-md leading-normal inline-block transition-colors duration-100 transition-ease-in-out'
+  'cursor-pointer rounded-md leading-normal inline-block min-w-[208px] transition-colors duration-100 transition-ease-in-out'
 
 export const Button: FC<ButtonProps> = ({
   variant = 'primary',
   size = 'medium',
-  children,
-  type = 'button',
+  className,
   ...props
 }: ButtonProps) => {
   const computedClasses: string = useMemo(() => {
     const modeClass: string = getModeClasses(variant)
     const sizeClass: string = getSizeClasses(size)
 
-    return clsx(BASE_BUTTON_CLASSES, modeClass, sizeClass)
-  }, [variant, size])
+    return clsx(BASE_BUTTON_CLASSES, modeClass, sizeClass, className)
+  }, [variant, size, className])
 
   return (
-    <button className={computedClasses} {...props}>
-      {children}
-    </button>
+    <button className={computedClasses} {...props} />
   )
 }

@@ -1,23 +1,16 @@
-import React, { useMemo, FC } from 'react'
-import clsx from 'clsx'
-import { InputProps } from '@types/InputType'
-import { getSizeClasses } from '@utils/getSizeClasses'
-import { BASE_INPUT_CLASSES } from '@styles/InputStyles'
+import type { FC, ComponentPropsWithoutRef } from "react"
 import { SearchIcon } from '../Icons/Search/Search'
 
-export const InputSearch: FC<InputProps> = ({
-  size = 'medium',
+type InputSearchProps = ComponentPropsWithoutRef<'form'> & {
+  placeholder?: string
+}
+
+export const InputSearch: FC<InputSearchProps> = ({
   placeholder = 'Search',
   ...props
-}: InputProps) => {
-  const computedClasses: string = useMemo(() => {
-    const sizeClass: string = getSizeClasses(size)
-
-    return clsx(BASE_INPUT_CLASSES, sizeClass, 'rounded-full pl-12')
-  }, [size])
-
+}) => {
   return (
-    <form>
+    <form {...props}>
       <label htmlFor="search" className="mb-2 text-sm text-gray-900 sr-only">
         Search
       </label>
@@ -28,9 +21,8 @@ export const InputSearch: FC<InputProps> = ({
         <input
           type="search"
           id="search"
-          className={computedClasses}
+          className='text-white/35 bg-input-color px-4 py-3 focus:outline-none rounded-full pl-12'
           placeholder={placeholder}
-          {...props}
         />
       </div>
     </form>
