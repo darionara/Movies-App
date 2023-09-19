@@ -33,7 +33,7 @@ export const Button: FC<ButtonProps> = ({
   size = 'medium',
   className,
   ...props
-}: ButtonProps) => {
+}) => {
   const computedClasses: string = useMemo(() => {
     const modeClass: string = getModeClasses(variant)
     const sizeClass: string = getSizeClasses(size)

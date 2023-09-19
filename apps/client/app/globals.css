@@ -7,9 +7,30 @@
   --secondary-color: #272728;
   --background-color: #1E1E21;
   --text-color: #fff;
+  --dark-grey: #38383E;
 }
 
 body {
   color: var(--text-color);
   background: var(--background-color);
+}
+
+.rc-slider-tooltip-inner {
+  background-color: var(--dark-grey) !important;
+  box-shadow: 0px 1px 4px #141417 !important;
+  min-width: 40px !important;
+  height: 30px !important;
+  padding: 10px 10px 0px !important;
+}
+
+.rc-slider-tooltip-arrow {
+  border-top-color: var(--dark-grey) !important;
+}
+
+.rc-slider-handle {
+  box-shadow: 0px 4px 4px #141417 !important;
+}
+
+.rc-slider-handle-dragging {
+  box-shadow: 0 0 5px var(--primary-color) !important;
 }
