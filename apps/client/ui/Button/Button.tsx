@@ -1,4 +1,5 @@
-import React, { useMemo, ComponentPropsWithoutRef, FC } from 'react'
+import { useMemo } from 'react'
+import type { ComponentPropsWithoutRef, FC } from 'react'
 import clsx from 'clsx'
 
 type ButtonProps = ComponentPropsWithoutRef<'button'> & {

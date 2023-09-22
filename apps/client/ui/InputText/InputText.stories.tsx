@@ -8,11 +8,20 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    placeholder: {
+      control: {
+        type: 'text'
+      }
+    }
+  }
 } satisfies Meta<typeof InputText>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const TextInput: Story = {
-  args: {},
+  args: {
+    placeholder: 'Filter by keywords...'
+  },
 }

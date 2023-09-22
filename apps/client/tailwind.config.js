@@ -15,7 +15,8 @@ module.exports = {
         'text-color': 'var(--text-color)',
         'dark-red': '#AD2418',
         'input-color': '#0F0F10',
-        'dark-grey': '#38383E'
+        'dark-grey': '#38383E',
+        'black-grey': '#19191B'
       },
     },
   },
