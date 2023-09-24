@@ -34,10 +34,20 @@ npm build
 
 ### Develop
 
-To develop all apps and packages, run the following command:
+To develop all apps and packages, follow the steps:
 
-```
-npm dev
+- Make sure your local `server` app connects to `TMDB` with your API key.
+  - Create account on [TMDB](https://www.themoviedb.org/)
+  - create `.env` file inside `./apps/server` - you can just run the command `cp ./apps/server/.example.env ./apps/server/.env` in the terminal.
+  - Go to [your account's settings](https://www.themoviedb.org/settings/api), copy your API key and pass it to `TMDB_API_KEY` variable.
+- Run the following command:
+
+```sh
+npm run dev
+# or - to run only client app (make sure your local client app is connected to some working server app)
+npm run dev:client
+# or - to run only server app
+npm run dec:server
 ```
 
 ### Swagger - API documentation
