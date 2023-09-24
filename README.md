@@ -1,7 +1,7 @@
 # Movies app
 
 This is an app where you can see most popular movies.
-The app is fetching data from [TMDB](https://www.themoviedb.org/).
+The app is fetching data from [TMDB](https://www.themoviedb.org/) using it's v3 API (stable).
 
 ## What's inside?
 
@@ -39,6 +39,17 @@ To develop all apps and packages, run the following command:
 ```
 npm dev
 ```
+
+### Swagger - API documentation
+
+To open API documentation run:
+```sh
+npm run dev
+# or
+npm run dev:server
+```
+
+and go to `http://localhost:3001/api` in the browser.
 
 ### Remote Caching
 
