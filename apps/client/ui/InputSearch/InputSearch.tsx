@@ -1,9 +1,7 @@
 import type { FC, ComponentPropsWithoutRef } from "react"
 import { SearchIcon } from '../Icons/Search/Search'
 
-type InputSearchProps = ComponentPropsWithoutRef<'form'> & {
-  placeholder?: string
-}
+type InputSearchProps = ComponentPropsWithoutRef<'form'> 
 
 export const InputSearch: FC<InputSearchProps> = ({
   placeholder = 'Search',

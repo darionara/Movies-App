@@ -27,7 +27,7 @@ const getModeClasses = (variant: ButtonProps['variant']): string =>
     : 'text-white/50 bg-secondary hover:text-text-color w-full'
 
 const BASE_BUTTON_CLASSES =
-  'cursor-pointer rounded-md leading-normal inline-block min-w-[208px] transition-colors duration-100 transition-ease-in-out'
+  'min-w-[208px] inline-block cursor-pointer rounded-md leading-normal transition-colors transition-ease-in-out duration-100'
 
 export const Button: FC<ButtonProps> = ({
   variant = 'primary',

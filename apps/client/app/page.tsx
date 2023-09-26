@@ -1,20 +1,17 @@
 'use client'
-import { useState, useEffect } from 'react'
 import { CustomSlider } from '@/ui/Slider/Slider'
+import { SearchIcon } from '@/ui/Icons/Search/Search'
+import { InputText } from '@/ui/InputText/InputText'
+import { InputSearch } from '@/ui/InputSearch/InputSearch'
 
-// useState and useEffect to bypass the hydration errors - now the errors are gone but the tooltips are still not visible :(
 export default function HomePage() {
-  const [isClient, setIsClient] = useState(false)
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
-
-  if (!isClient) return null
-
   return (
     <>
-      <CustomSlider />
+      <CustomSlider range className='m-5' />
+      <SearchIcon className='m-5' />
+      {/* why I cannot add styles to InputText and Slider this way? */}
+      <InputText className='m-5' /> 
+      <InputSearch className='m-5' />
     </>
   )
 }

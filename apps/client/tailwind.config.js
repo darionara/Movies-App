@@ -16,7 +16,8 @@ module.exports = {
         'dark-red': '#AD2418',
         'input-color': '#0F0F10',
         'dark-grey': '#38383E',
-        'black-grey': '#19191B'
+        'black-grey': '#19191B',
+        'shadow-grey': '#141417'
       },
     },
   },
