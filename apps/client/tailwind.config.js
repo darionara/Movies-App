@@ -9,10 +9,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'primary': 'var(--primary-color)',
-        'secondary': 'var(--secondary-color)',
-        'background-color': 'var(--background-color)',
-        'text-color': 'var(--text-color)',
+        'primary': '#D02C1E',
+        'secondary': '#272728',
+        'background-color': '#1E1E21',
+        'text-color': '#fff',
         'dark-red': '#AD2418',
         'input-color': '#0F0F10',
         'dark-grey': '#38383E',
@@ -20,6 +20,9 @@ module.exports = {
         'shadow-grey': '#141417'
       },
     },
+/*     boxShadow: {
+      'shadow': '0px 0px 1px 4px shadow-grey'
+    }, */
   },
   plugins: [],
 }
