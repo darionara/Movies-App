@@ -1,21 +1,23 @@
 'use client'
+import { useState } from 'react'
+import { CustomSlider } from '@/ui/Slider/Slider'
+import { SearchIcon } from '@/ui/Icons/Search/Search'
+import { InputText } from '@/ui/InputText/InputText'
+import { InputSearch } from '@/ui/InputSearch/InputSearch'
 
-import Comp from './Comp'
+export default function HomePage() {
+  const [sliderValue, setSliderValue] = useState<number | number[]>()
 
-export default function Page() {
-  const onClick = () => {
-    alert('Hello')
+  const handleSliderChange = (value: number | number[]) => {
+    setSliderValue(value)
   }
 
   return (
     <>
-      <h1>Client app</h1>
-      <button onClick={onClick}>Hello</button>
-      <Comp>
-        {(variable) => {
-          return <div>{variable}</div>
-        }}
-      </Comp>
+      <CustomSlider className="pl-5" value={sliderValue} onChange={handleSliderChange} />
+      <SearchIcon className="m-5" />
+      <InputText className="m-5" />
+      <InputSearch className="m-5" />
     </>
   )
 }
