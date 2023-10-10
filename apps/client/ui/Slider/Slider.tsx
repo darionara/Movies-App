@@ -1,10 +1,10 @@
-import React, { FC, ReactNode } from 'react'
+import type { FC, ReactNode, ComponentPropsWithoutRef } from 'react'
 import 'rc-slider/assets/index.css'
 import Slider from 'rc-slider'
 import clsx from 'clsx'
 import './Slider.css'
 
-type CustomSliderProps = {
+type CustomSliderProps = Omit<ComponentPropsWithoutRef<'input'>, 'value' | 'onChange'> & {
   range?: boolean
   min?: number
   max?: number
