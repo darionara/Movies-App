@@ -1,0 +1,15 @@
+.rc-slider-track {
+  @apply bg-primary h-1
+}
+
+.rc-slider-handle {
+  @apply bg-primary h-3.5 w-3.5 border-none opacity-100 shadow shadow-shadow-grey 
+}
+
+.rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
+  @apply shadow-none
+}
+
+.rc-slider-rail {
+  @apply bg-dark-grey h-1
+}

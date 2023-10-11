@@ -1,12 +1,14 @@
-import React from 'react'
+import type { FC } from 'react'
+import { IconProps } from '@/types/IconType'
 
-export const ListBulletIcon: React.FC = () => (
+export const ListBulletIcon: FC<IconProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
     height="24"
     viewBox="0 0 24 24"
     fill="none"
+    {...props}
   >
     <g clip-path="url(#clip0_12_76)">
       <path

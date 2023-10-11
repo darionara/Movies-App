@@ -9,11 +9,20 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    placeholder: {
+      control: {
+        type: 'text'
+      }
+    }
+  }
 } satisfies Meta<typeof InputSearch>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const SearchInput: Story = {
-  args: {},
+  args: {
+    placeholder: 'Search'
+  },
 }

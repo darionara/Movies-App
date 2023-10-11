@@ -1,12 +1,14 @@
-import React from 'react'
+import type { FC } from 'react'
+import { IconProps } from '@/types/IconType'
 
-export const SquaresIcon: React.FC = () => (
+export const SquaresIcon: FC<IconProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
     height="24"
     viewBox="0 0 24 24"
     fill="none"
+    {...props}
   >
     <path
       fill-rule="evenodd"

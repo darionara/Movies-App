@@ -1,6 +1,7 @@
 import type { FC, ComponentPropsWithoutRef } from 'react'
+import clsx from 'clsx'
 
-type InputTextProps = ComponentPropsWithoutRef<'input'> 
+type InputTextProps = ComponentPropsWithoutRef<'input'>
 
 export const InputText: FC<InputTextProps> = ({
   placeholder = 'Filter by keywords...',
@@ -10,7 +11,10 @@ export const InputText: FC<InputTextProps> = ({
   return (
     <input
       type="text"
-      className='px-4 py-3 bg-input-color text-white/35 rounded-md focus:outline-none'
+      className={clsx(
+        'text-white/35 bg-input-color px-4 py-3 focus:outline-none rounded-md',
+        className,
+      )}
       placeholder={placeholder}
       {...props}
     />
