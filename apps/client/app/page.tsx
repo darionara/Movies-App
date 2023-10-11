@@ -12,9 +12,14 @@ import { TabMenu } from '@/ui/Headings/TabMenu'
 
 export default function HomePage() {
   const [sliderValue, setSliderValue] = useState<number | number[]>()
-
+  const [isActive, setIsActive] = useState<boolean>()
+  
   const handleSliderChange = (value: number | number[]) => {
     setSliderValue(value)
+  }
+
+  const handleClick = () => {
+    setIsActive(!isActive)
   }
 
   return (
@@ -23,11 +28,11 @@ export default function HomePage() {
       <SearchIcon className="m-5" />
       <InputText className="m-5" />
       <InputSearch className="m-5" />
-      <GenrePill className='m-5'>Genre</GenrePill>
+      <GenrePill className='m-5' isActive={isActive} onClick={handleClick}>Genre</GenrePill>
       <Button size='small' className='m-5'>This is a really long button text</Button>
       <GenresList className='m-5' />
       <FilterHeading className='m-5'>filter</FilterHeading>
-      <TabMenu className='m-5'>movies</TabMenu>
+      <TabMenu className='m-5' isActive={isActive} onClick={handleClick}>movies</TabMenu>
     </>
   )
 }
