@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import type { FC } from 'react'
 import { GenrePill } from '@/ui/Pill/Pill'
 import clsx from 'clsx'
@@ -27,21 +26,15 @@ const genres: string[] = [
 
 type GenresListProps = {
   className?: string
-  isActive?: boolean
-  onClick?: () => void
+  activeGenres?: string[]
+  onGenreClick?: (genre: string) => void
 }
 
-export const GenresList: FC<GenresListProps> = ({ className }) => {
-  const [activeGenres, setActiveGenres] = useState<string[]>([])
-
-  const handleGenreClick = (genre: string) => {
-    setActiveGenres((prevActiveGenres) => {
-      return prevActiveGenres.includes(genre)
-        ? prevActiveGenres.filter((activeGenre) => activeGenre !== genre)
-        : [...prevActiveGenres, genre]
-    })
-  }
-
+export const GenresList: FC<GenresListProps> = ({
+  className,
+  activeGenres,
+  onGenreClick,
+}) => {
   return (
     <div className={clsx('min-w-[100px] w-full', className)}>
       <ul className="flex flex-wrap gap-2">
@@ -50,9 +43,7 @@ export const GenresList: FC<GenresListProps> = ({ className }) => {
             <li key={genre}>
               <GenrePill
                 isActive={activeGenres.includes(genre)}
-                onClick={() =>
-                  handleGenreClick(genre)
-                }
+                onClick={() => onGenreClick(genre)}
               >
                 {genre}
               </GenrePill>
