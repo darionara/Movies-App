@@ -19,10 +19,10 @@ module.exports = {
         'black-grey': '#19191B',
         'shadow-grey': '#141417'
       },
+      backgroundImage: {
+        'avatar-img': "url('/avatar.svg')"
+      }
     },
-/*     boxShadow: {
-      'shadow': '0px 0px 1px 4px shadow-grey'
-    }, */
   },
   plugins: [],
 }
