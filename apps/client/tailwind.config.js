@@ -21,6 +21,9 @@ module.exports = {
       },
       backgroundImage: {
         'avatar-img': "url('/avatar.svg')"
+      },
+      width: {
+        'max-page-width': '350rem'
       }
     },
   },
