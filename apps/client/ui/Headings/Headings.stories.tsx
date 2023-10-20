@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { FilterHeading } from './FilterHeading'
 
 const meta = {
-  title: 'Components/Headings',
+  title: 'Components/Heading',
   component: FilterHeading,
   parameters: {
     layout: 'centered',
