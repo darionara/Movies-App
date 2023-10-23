@@ -15,7 +15,7 @@ type CustomSliderProps = Omit<
   handleRender?: ReactNode
 } & (
     | {
-        range?: true
+        range: true
         defaultValue?: number[]
         value?: number[]
         onChange?: (value: number[]) => void

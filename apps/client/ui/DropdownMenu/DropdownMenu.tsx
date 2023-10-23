@@ -1,39 +1,15 @@
-import {
-  FireIcon,
-  PlayIcon,
-  CalendarDaysIcon,
-  StarIcon,
-} from '@heroicons/react/20/solid'
-import type { FC } from 'react'
+import type { FC, ComponentPropsWithoutRef } from 'react'
 import clsx from 'clsx'
 import { MenuItem } from '@/ui/DropdownMenu/DropdownMenuItem'
 
-type DropdownProps = {
+type DropdownProps = ComponentPropsWithoutRef<'ul'> & {
   className?: string
   isOpen?: boolean
-  onMouseLeave?: () => void;
+  onMouseLeave?: () => void
+  menuItems: Array<{ Icon: JSX.Element; text: string }>
 }
 
-const menuItems = [
-  {
-    icon: <FireIcon className="h-6 w-6 inline mx-3 text-black-grey" />,
-    text: 'Popular',
-  },
-  {
-    icon: <PlayIcon className="h-6 w-6 inline mx-3 text-black-grey" />,
-    text: 'Now Playing',
-  },
-  {
-    icon: <CalendarDaysIcon className="h-6 w-6 inline mx-3 text-black-grey" />,
-    text: 'Upcoming',
-  },
-  {
-    icon: <StarIcon className="h-6 w-6 inline mx-3 text-black-grey" />,
-    text: 'Top Rated',
-  },
-]
-
-export const DropdownMenu: FC<DropdownProps> = ({ className, isOpen, onMouseLeave }) => {
+export const DropdownMenu: FC<DropdownProps> = ({ className, isOpen, onMouseLeave, menuItems }) => {
   return (
     <ul
       className={clsx(

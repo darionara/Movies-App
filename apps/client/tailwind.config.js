@@ -19,9 +19,6 @@ module.exports = {
         'black-grey': '#19191B',
         'shadow-grey': '#141417'
       },
-      backgroundImage: {
-        'avatar-img': "url('/avatar.svg')"
-      },
       width: {
         'max-page-width': '350rem'
       }

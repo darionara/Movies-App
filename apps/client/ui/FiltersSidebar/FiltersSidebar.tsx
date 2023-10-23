@@ -1,24 +1,18 @@
 import { Button } from '@/ui/Button/Button'
 import { CustomSlider } from '@/ui/Slider/Slider'
 import { InputText } from '@/ui/InputText/InputText'
-import { FilterHeading } from '@/ui/Headings/FilterHeading'
+import { FilterHeading } from '@/ui/FilterHeading/FilterHeading'
 import { GenresList } from '@/ui/PillsList/PillsList'
 import { useState } from 'react'
-import type { FC } from 'react'
+import type { FC, ComponentPropsWithoutRef } from 'react'
+import clsx from 'clsx'
 
-type SidebarProps = {
+type SidebarProps = ComponentPropsWithoutRef<'aside'> & {
   className?: string
 }
 
-export const SidePanel: FC<SidebarProps> = () => {
-  /*   I have a problem with sliderValue type - 
-  when <number> -> the Slider is ok but Slider with prop range gives an error:
-  Type '{ range: true; value: number; onChange: (value: number) => void; }' is not assignable to type 'IntrinsicAttributes & CustomSliderProps'.
-  Types of property 'value' are incompatible.
-  Type 'number' is not assignable to type 'number[]'. 
-  I think it worked when you showed me this on Wednesday - where's the difference?
-*/
-  const [sliderValue, setSliderValue] = useState()
+export const FiltersSidebar: FC<SidebarProps> = (className) => {
+  const [sliderValue, setSliderValue] = useState<number>()
   const [activeGenres, setActiveGenres] = useState<string[]>([])
 
   const handleSliderChange = (value: typeof sliderValue) => {
@@ -34,7 +28,9 @@ export const SidePanel: FC<SidebarProps> = () => {
   }
 
   return (
-    <aside className="flex flex-col gap-7 w-60 ml-20 mr-11 mb-12">
+    <aside
+      className={clsx('flex flex-col gap-7 w-60 ml-20 mr-11 mb-12', className)}
+    >
       <h2 className="text-lg font-bold text-text-color cursor-default">
         Filters
       </h2>

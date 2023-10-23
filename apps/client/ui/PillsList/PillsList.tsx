@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import type { FC, ComponentPropsWithoutRef } from 'react'
 import { GenrePill } from '@/ui/Pill/Pill'
 import clsx from 'clsx'
 
@@ -24,7 +24,7 @@ const genres: string[] = [
   'western',
 ]
 
-type GenresListProps = {
+type GenresListProps = ComponentPropsWithoutRef<'div'> &{
   className?: string
   activeGenres?: string[]
   onGenreClick?: (genre: string) => void
