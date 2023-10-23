@@ -1,7 +1,7 @@
-import type { FC } from 'react'
+import type { FC, ComponentPropsWithoutRef } from 'react'
 import clsx from 'clsx'
 
-type FilterHeadingProps = {
+type FilterHeadingProps = ComponentPropsWithoutRef<'h3'> & {
   children: string
   className?: string
 }

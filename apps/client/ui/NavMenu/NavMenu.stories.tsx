@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { NavMenu } from '@/ui/NavigationMenu/NavMenu'
+import { NavMenu } from '@/ui/NavMenu/NavMenu'
 
 const meta = {
   title: 'Components/Navigation menu',
