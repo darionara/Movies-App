@@ -5,6 +5,8 @@ import { Avatar } from '@/ui/Avatar/Avatar'
 import { useState } from 'react'
 import type { FC, ComponentPropsWithoutRef } from 'react'
 import clsx from 'clsx'
+import { useDispatch, useSelector } from 'react-redux'
+import { setActiveMenuItem, closeDropdown, setIsDropdownOpen } from '@/store/HeaderSlice'
 
 // TODO: remove the object when data will go from API
 const mockedUserData = {
@@ -17,20 +19,28 @@ type HeaderProps = ComponentPropsWithoutRef<'header'> & {
   className?: string
 }
 
-export const Header: FC<HeaderProps> = (className) => {
-  const [activeMenuItem, setActiveMenuItem] = useState<string | null>('Movies')
-  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
+export const Header: FC<HeaderProps> = ({className}) => {
+  const dispatch = useDispatch()
+  const activeMenuItem = useSelector(state => state.header.activeMenuItem)
+  const isDropdownOpen = useSelector(state => state.header.isDropdownOpen)
+  console.log(activeMenuItem)
+
+  //const [activeMenuItem, setActiveMenuItem] = useState<string | null>('Movies')
+  //const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
 
   const handleMenuHover = (item: string) => {
-    setActiveMenuItem((prevItem) => {
+    dispatch(setActiveMenuItem(activeMenuItem !== item ? item : null))
+    dispatch(setIsDropdownOpen(activeMenuItem !== item))
+  /*   setActiveMenuItem((prevItem) => {
       setIsDropdownOpen(prevItem !== item)
 
       return prevItem !== item ? item : null
-    })
+    }) */
   }
 
   const handleDropdownMouseLeave = () => {
-    setIsDropdownOpen(false)
+    dispatch(closeDropdown())
+    //setIsDropdownOpen(false)
   }
 
   return (
