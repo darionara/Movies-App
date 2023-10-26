@@ -3,13 +3,18 @@ import clsx from 'clsx'
 import { MenuItem } from '@/ui/DropdownMenu/DropdownMenuItem'
 
 type DropdownProps = ComponentPropsWithoutRef<'ul'> & {
-  className?: string
   isOpen?: boolean
   onMouseLeave?: () => void
-  menuItems: Array<{ Icon: JSX.Element; text: string }>
+  menuItems: Array<{ Icon: FC; text: string }>
 }
 
-export const DropdownMenu: FC<DropdownProps> = ({ className, isOpen, onMouseLeave, menuItems }) => {
+export const DropdownMenu: FC<DropdownProps> = ({
+  className,
+  isOpen,
+  onMouseLeave,
+  menuItems,
+  ...props
+}) => {
   return (
     <ul
       className={clsx(
@@ -18,6 +23,7 @@ export const DropdownMenu: FC<DropdownProps> = ({ className, isOpen, onMouseLeav
         className,
       )}
       onMouseLeave={onMouseLeave}
+      {...props}
     >
       {menuItems.map((item) => (
         <MenuItem key={item.text} {...item} />

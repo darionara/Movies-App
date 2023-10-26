@@ -11,7 +11,6 @@ type CustomSliderProps = Omit<
   min?: number
   max?: number
   step?: number
-  className?: string
   handleRender?: ReactNode
 } & (
     | {

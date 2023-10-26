@@ -12,25 +12,24 @@ const menuItems = ['TV Shows', 'Movies', 'Series', 'Animations']
 
 const dropdownMenuItems = [
   {
-    Icon: <FireIcon />,
+    Icon: FireIcon,
     text: 'Popular',
   },
   {
-    Icon: <PlayIcon />,
+    Icon: PlayIcon,
     text: 'Now Playing',
   },
   {
-    Icon: <CalendarDaysIcon />,
+    Icon: CalendarDaysIcon,
     text: 'Upcoming',
   },
   {
-    Icon: <StarIcon />,
+    Icon: StarIcon,
     text: 'Top Rated',
   },
 ]
 
 type NavMenuProps = ComponentPropsWithoutRef<'ul'> & {
-  className?: string
   activeItem?: string
   onHover?: (option: string) => void
   isOpen?: boolean
@@ -43,9 +42,10 @@ export const NavMenu: FC<NavMenuProps> = ({
   onHover,
   isOpen,
   onMouseLeave,
+  ...props
 }) => {
   return (
-    <ul className={clsx('flex flex-row gap-8', className)}>
+    <ul className={clsx('flex flex-row gap-8', className)} {...props}>
       {menuItems.map((item) => (
         <li
           key={item}
@@ -58,12 +58,12 @@ export const NavMenu: FC<NavMenuProps> = ({
             },
           )}
           onMouseOver={() => onHover(item)}
+          onMouseLeave={onMouseLeave}
         >
           {item}
           {activeItem === item && (
             <DropdownMenu
               isOpen={isOpen}
-              onMouseLeave={onMouseLeave}
               className="absolute top-10 text-sm font-semibold"
               menuItems={dropdownMenuItems}
             />

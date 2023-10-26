@@ -3,8 +3,7 @@ import { NavMenu } from '@/ui/NavMenu/NavMenu'
 import { InputSearch } from '@/ui/InputSearch/InputSearch'
 import { Avatar } from '@/ui/Avatar/Avatar'
 import { useState } from 'react'
-import type { FC, ComponentPropsWithoutRef } from 'react'
-import clsx from 'clsx'
+import type { FC } from 'react'
 
 // TODO: remove the object when data will go from API
 const mockedUserData = {
@@ -13,11 +12,7 @@ const mockedUserData = {
   avatarSrc: '/avatar.svg',
 }
 
-type HeaderProps = ComponentPropsWithoutRef<'header'> & {
-  className?: string
-}
-
-export const Header: FC<HeaderProps> = (className) => {
+export const Header: FC = () => {
   const [activeMenuItem, setActiveMenuItem] = useState<string | null>('Movies')
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
 
@@ -34,12 +29,7 @@ export const Header: FC<HeaderProps> = (className) => {
   }
 
   return (
-    <header
-      className={clsx(
-        'bg-inherit flex items-center py-14 justify-between gap-10',
-        className,
-      )}
-    >
+    <header className="bg-inherit flex items-center py-14 justify-between gap-10">
       <div className="min-w-[600px] ml-20 w-[700px] flex justify-between">
         <a href="/">
           <LogoIcon />

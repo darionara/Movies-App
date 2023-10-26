@@ -4,15 +4,11 @@ import { InputText } from '@/ui/InputText/InputText'
 import { FilterHeading } from '@/ui/FilterHeading/FilterHeading'
 import { GenresList } from '@/ui/PillsList/PillsList'
 import { useState } from 'react'
-import type { FC, ComponentPropsWithoutRef } from 'react'
-import clsx from 'clsx'
+import type { FC } from 'react'
 
-type SidebarProps = ComponentPropsWithoutRef<'aside'> & {
-  className?: string
-}
-
-export const FiltersSidebar: FC<SidebarProps> = (className) => {
-  const [sliderValue, setSliderValue] = useState<number>()
+export const FiltersSidebar: FC = () => {
+  // I forgot to ask about this sliderValue type - now it's undefined ;/
+  const [sliderValue, setSliderValue] = useState()
   const [activeGenres, setActiveGenres] = useState<string[]>([])
 
   const handleSliderChange = (value: typeof sliderValue) => {
@@ -28,9 +24,7 @@ export const FiltersSidebar: FC<SidebarProps> = (className) => {
   }
 
   return (
-    <aside
-      className={clsx('flex flex-col gap-7 w-60 ml-20 mr-11 mb-12', className)}
-    >
+    <aside className="flex flex-col gap-7 w-60 ml-20 mr-11 mb-12">
       <h2 className="text-lg font-bold text-text-color cursor-default">
         Filters
       </h2>

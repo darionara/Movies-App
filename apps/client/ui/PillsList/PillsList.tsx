@@ -2,6 +2,7 @@ import type { FC, ComponentPropsWithoutRef } from 'react'
 import { GenrePill } from '@/ui/Pill/Pill'
 import clsx from 'clsx'
 
+// TODO: remove the array when data will go from API
 const genres: string[] = [
   'action',
   'adventure',
@@ -24,8 +25,7 @@ const genres: string[] = [
   'western',
 ]
 
-type GenresListProps = ComponentPropsWithoutRef<'div'> &{
-  className?: string
+type GenresListProps = ComponentPropsWithoutRef<'div'> & {
   activeGenres?: string[]
   onGenreClick?: (genre: string) => void
 }
@@ -34,9 +34,10 @@ export const GenresList: FC<GenresListProps> = ({
   className,
   activeGenres,
   onGenreClick,
+  ...props
 }) => {
   return (
-    <div className={clsx('min-w-[100px] w-full', className)}>
+    <div className={clsx('min-w-[100px] w-full', className)} {...props}>
       <ul className="flex flex-wrap gap-2">
         {genres.map((genre) => {
           return (
