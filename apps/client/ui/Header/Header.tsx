@@ -13,19 +13,16 @@ const mockedUserData = {
 }
 
 export const Header: FC = () => {
-  const [activeMenuItem, setActiveMenuItem] = useState<string | null>('Movies')
-  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
-
-  const handleMenuHover = (item: string) => {
+  const [activeMenuItem, setActiveMenuItem] = useState<string>(null)
+  
+  const handleMenuClick = (item: string) => {
     setActiveMenuItem((prevItem) => {
-      setIsDropdownOpen(prevItem !== item)
-
       return prevItem !== item ? item : null
     })
   }
 
   const handleDropdownMouseLeave = () => {
-    setIsDropdownOpen(false)
+    setActiveMenuItem(null)
   }
 
   return (
@@ -35,9 +32,8 @@ export const Header: FC = () => {
           <LogoIcon />
         </a>
         <NavMenu
-          isOpen={isDropdownOpen}
           activeItem={activeMenuItem}
-          onHover={handleMenuHover}
+          onClick={handleMenuClick}
           onMouseLeave={handleDropdownMouseLeave}
         />
       </div>
