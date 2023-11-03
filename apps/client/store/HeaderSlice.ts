@@ -1,19 +1,6 @@
-// ACTIONS
-export const setActiveMenuItem = (menuItem: string) => ({
-  type: 'menuItem/setActive',
-  payload: menuItem,
-})
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-export const closeDropdown = () => ({
-  type: 'menuItem/closeDropdown',
-})
-
-export const setIsDropdownOpen = (isOpen: boolean) => ({
-  type: 'menuItem/setIsOpen',
-  payload: isOpen
-})
-
-type HeaderState = {
+export type HeaderState = {
   activeMenuItem: string
   isDropdownOpen: boolean
 }
@@ -23,27 +10,24 @@ const initialState: HeaderState = {
   isDropdownOpen: false,
 }
 
-// REDUCER
-function headerReducer(state = initialState, action) {
-  switch (action.type) {
-    case 'menuItem/setActive':
-      return { 
-        ...state, 
-        activeMenuItem: action.payload 
-      }
-    case 'menuItem/closeDropdown': 
-      return {
-        ...state,
-        isDropdownOpen: false
-      }
-    case 'menuItem/setIsOpen':
-      return {
-        ...state,
-        isDropdownOpen: action.payload
-      }
-      default:
-        return state
-  }
-}
+const headerSlice = createSlice({
+  name: 'header',
+  initialState,
+  reducers: {
+    setActiveMenuItem: (state, action: PayloadAction<string>) => {
+      state.activeMenuItem = action.payload
+    },
+    closeDropdown: (state) => {
+      state.isDropdownOpen = false
+    },
+    setIsDropdownOpen: (state, action: PayloadAction<boolean>) => {
+      state.isDropdownOpen = action.payload
+    },
+  },
+})
 
+export const { setActiveMenuItem, closeDropdown, setIsDropdownOpen } =
+  headerSlice.actions
+
+const headerReducer = headerSlice.reducer
 export default headerReducer
