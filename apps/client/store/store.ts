@@ -1,13 +1,18 @@
 'use client'
 import { configureStore } from '@reduxjs/toolkit'
-import filtersReducer from '@/store/FiltersSidebarSlice'
-import headerReducer from '@/store/HeaderSlice'
+import filtersReducer, { FiltersState } from '@/store/FiltersSidebarSlice'
+import headerReducer, { HeaderState } from '@/store/HeaderSlice'
 
-const store = configureStore({
+export type RootState = {
+  filters: FiltersState
+  header: HeaderState
+}
+
+const reduxStore = configureStore({
   reducer: {
     filters: filtersReducer,
-    header: headerReducer
+    header: headerReducer,
   },
 })
 
-export default store
+export default reduxStore

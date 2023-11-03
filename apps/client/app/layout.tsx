@@ -1,14 +1,12 @@
-'use client'
 import type { Metadata } from 'next'
 import './globals.css'
 import { Open_Sans } from 'next/font/google'
-import { Provider } from 'react-redux'
-import store from '../store/store'
+import ReduxProvider from '@/store/ReduxProvider'
 
-/* export const metadata: Metadata = {
+export const metadata: Metadata = {
   title: 'Movies App',
   description: 'The app with a list of best rated movies.',
-} */
+}
 
 const open_sans = Open_Sans({
   subsets: ['latin'],
@@ -24,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={open_sans.variable}>
       <body>
-        <Provider store={store}>{children}</Provider>
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   )
