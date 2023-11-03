@@ -3,28 +3,31 @@ import { CustomSlider } from '@/ui/Slider/Slider'
 import { InputText } from '@/ui/InputText/InputText'
 import { FilterHeading } from '@/ui/FilterHeading/FilterHeading'
 import { GenresList } from '@/ui/PillsList/PillsList'
-import { useState } from 'react'
 import type { FC, ComponentPropsWithoutRef } from 'react'
 import clsx from 'clsx'
+import { useDispatch, useSelector } from 'react-redux'
+import { setSliderValue, toggleGenre } from '@/store/FiltersSidebarSlice'
+import { RootState } from '@/store/Store'
 
 type SidebarProps = ComponentPropsWithoutRef<'aside'> & {
   className?: string
 }
 
 export const FiltersSidebar: FC<SidebarProps> = (className) => {
-  const [sliderValue, setSliderValue] = useState<number>()
-  const [activeGenres, setActiveGenres] = useState<string[]>([])
+  const dispatch = useDispatch()
+  const sliderValue = useSelector(
+    (state: RootState) => state.filters.sliderValue,
+  )
+  const activeGenres = useSelector(
+    (state: RootState) => state.filters.activeGenres,
+  )
 
   const handleSliderChange = (value: typeof sliderValue) => {
-    setSliderValue(value)
+    dispatch(setSliderValue(value))
   }
 
   const handleGenreClick = (genre: string) => {
-    setActiveGenres((prevActiveGenres) => {
-      return prevActiveGenres.includes(genre)
-        ? prevActiveGenres.filter((activeGenre) => activeGenre !== genre)
-        : [...prevActiveGenres, genre]
-    })
+    dispatch(toggleGenre(genre))
   }
 
   return (

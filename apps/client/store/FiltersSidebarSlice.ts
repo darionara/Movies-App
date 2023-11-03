@@ -1,40 +1,34 @@
-// ACTIONS
-export const setSliderValue = (value: number) => ({
-  type: 'slider/setValue',
-  payload: value
-})
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-export const setActiveGenres = (genres: string[]) => ({
-  type: 'genres/setActive',
-  payload: genres
-})
-
-type FiltersSidebarState = {
+export type FiltersState = {
   sliderValue: number | undefined
   activeGenres: string[]
 }
 
-const initialState: FiltersSidebarState = {
+const initialState: FiltersState = {
   sliderValue: undefined,
-  activeGenres: []
+  activeGenres: [],
 }
 
-// REDUCER
-function filtersReducer(state = initialState, action) {
-  switch (action.type) {
-    case 'slider/setValue':
-      return {
-        ...state,
-        sliderValue: action.payload
-      }
-    case 'genres/setActive':
-      return {
-        ...state,
-        activeGenres: action.payload
-      }
-    default:
-      return state
-  }
-}
+const filtersSlice = createSlice({
+  name: 'filters',
+  initialState,
+  reducers: {
+    setSliderValue: (state, action: PayloadAction<number | undefined>) => {
+      state.sliderValue = action.payload
+    },
+    toggleGenre: (state, action: PayloadAction<string>) => {
+      const genre = action.payload
+      state.activeGenres.includes(genre)
+        ? (state.activeGenres = state.activeGenres.filter(
+            (activeGenre) => activeGenre !== genre,
+          ))
+        : state.activeGenres.push(genre)
+    },
+  },
+})
 
+export const { setSliderValue, toggleGenre } = filtersSlice.actions
+
+const filtersReducer = filtersSlice.reducer
 export default filtersReducer
