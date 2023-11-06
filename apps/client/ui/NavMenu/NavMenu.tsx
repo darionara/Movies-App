@@ -29,17 +29,19 @@ const dropdownMenuItems = [
   },
 ]
 
-type NavMenuProps = ComponentPropsWithoutRef<'ul'> & {
+type NavMenuProps = Omit<ComponentPropsWithoutRef<'ul'>, 'onMouseOver'> & {
   activeItem?: string
-  onClick?: (item: string) => void
+  onMouseOver?: (item: string) => void
   onMouseLeave?: () => void
+  onOptionSelect?: () => void
 }
 
 export const NavMenu: FC<NavMenuProps> = ({
   className,
   activeItem,
-  onClick,
+  onMouseOver,
   onMouseLeave,
+  onOptionSelect,
   ...props
 }) => {
   return (
@@ -48,21 +50,25 @@ export const NavMenu: FC<NavMenuProps> = ({
         <li
           key={item}
           className={clsx(
-            'relative text-lg font-bold capitalize cursor-default whitespace-nowrap',
+            'h-12 leading-[48px] relative text-lg font-bold capitalize cursor-default whitespace-nowrap',
             {
               'hover:text-text-color transition-colors transition-ease-in-out duration-100': !activeItem,
               'text-text-color cursor-pointer': activeItem === item,
               'text-text-color/[.50]': activeItem !== item,
             },
           )}
-          onClick={() => onClick(item)}
+          onMouseOver={() => onMouseOver(item)}
+          onMouseLeave={onMouseLeave}
         >
           {item}
           {activeItem === item && (
             <DropdownMenu
-              className="absolute top-10 text-sm font-semibold"
+              className="absolute text-sm font-semibold"
               menuItems={dropdownMenuItems}
+              //it doesn't work without these two function here, as you showed in your example
+              onMouseOver={() => onMouseOver(item)}
               onMouseLeave={onMouseLeave}
+              onOptionSelect={onOptionSelect}
             />
           )}
         </li>

@@ -15,26 +15,30 @@ const mockedUserData = {
 export const Header: FC = () => {
   const [activeMenuItem, setActiveMenuItem] = useState<string>(null)
   
-  const handleMenuClick = (item: string) => {
+  const handleMenuHover = (item: string) => {
     setActiveMenuItem((prevItem) => {
       return prevItem !== item ? item : null
     })
   }
 
-  const handleDropdownMouseLeave = () => {
+  const resetActiveMenuItem = () => {
     setActiveMenuItem(null)
   }
+  
+  const handleDropdownMouseLeave = resetActiveMenuItem
+  const handleOptionSelect = resetActiveMenuItem
 
   return (
     <header className="bg-inherit flex items-center py-14 justify-between gap-10">
-      <div className="min-w-[600px] ml-20 w-[700px] flex justify-between">
+      <div className="min-w-[600px] ml-20 w-[700px] flex justify-between items-center">
         <a href="/">
           <LogoIcon />
         </a>
         <NavMenu
           activeItem={activeMenuItem}
-          onClick={handleMenuClick}
+          onMouseOver={handleMenuHover}
           onMouseLeave={handleDropdownMouseLeave}
+          onOptionSelect={handleOptionSelect}
         />
       </div>
       <div className="min-w-[450px] mr-20 flex justify-between">
