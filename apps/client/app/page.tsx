@@ -1,23 +1,16 @@
 'use client'
-import { useState } from 'react'
-import { CustomSlider } from '@/ui/Slider/Slider'
-import { SearchIcon } from '@/ui/Icons/Search/Search'
-import { InputText } from '@/ui/InputText/InputText'
-import { InputSearch } from '@/ui/InputSearch/InputSearch'
+import { FiltersSidebar } from '@/ui/FiltersSidebar/FiltersSidebar'
+import { MainPanel } from '@/ui/MainPanel/MainPanel'
+import { Header } from '@/ui/Header/Header'
 
 export default function HomePage() {
-  const [sliderValue, setSliderValue] = useState<number | number[]>()
-
-  const handleSliderChange = (value: number | number[]) => {
-    setSliderValue(value)
-  }
-
   return (
-    <>
-      <CustomSlider className="pl-5" value={sliderValue} onChange={handleSliderChange} />
-      <SearchIcon className="m-5" />
-      <InputText className="m-5" />
-      <InputSearch className="m-5" />
-    </>
+    <div>
+      <Header />
+      <FiltersSidebar />
+      <main>
+        <MainPanel />
+      </main>
+    </div>
   )
 }

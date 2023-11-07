@@ -1,12 +1,14 @@
-import React from 'react'
+import type { FC } from 'react'
+import { IconProps } from '@/types/IconType'
 
-export const ArrowDownIcon: React.FC = () => (
+export const ArrowDownIcon: FC<IconProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
     height="19"
     viewBox="0 0 20 19"
     fill="none"
+    {...props}
   >
     <g filter="url(#filter0_dd_12_66)">
       <path

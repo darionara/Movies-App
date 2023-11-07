@@ -4,17 +4,28 @@ import Slider from 'rc-slider'
 import clsx from 'clsx'
 import './Slider.css'
 
-type CustomSliderProps = Omit<ComponentPropsWithoutRef<'input'>, 'value' | 'onChange'> & {
-  range?: boolean
+type CustomSliderProps = Omit<
+  ComponentPropsWithoutRef<'input'>,
+  'value' | 'onChange'
+> & {
   min?: number
   max?: number
   step?: number
-  defaultValue?: number | number[]
-  className?: string
   handleRender?: ReactNode
-  value?: number | number[]
-  onChange?: (value: number | number[]) => void
-}
+} & (
+    | {
+        range: true
+        defaultValue?: number[]
+        value?: number[]
+        onChange?: (value: number[]) => void
+      }
+    | {
+        range?: false
+        defaultValue?: number
+        value?: number
+        onChange?: (value: number) => void
+      }
+  )
 
 export const CustomSlider: FC<CustomSliderProps> = ({
   range = false,
@@ -68,7 +79,7 @@ export const CustomSlider: FC<CustomSliderProps> = ({
         handleRender={handleRender}
         value={value}
         onChange={onChange}
-        className='w-full p-10'
+        className="w-full p-10"
       />
       <div className="flex mt-1 justify-between">
         <div className="flex-1 text-left ml-[-5px] text-sm text-gray-500">

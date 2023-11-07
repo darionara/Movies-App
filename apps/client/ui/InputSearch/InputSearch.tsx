@@ -1,7 +1,7 @@
-import type { FC, ComponentPropsWithoutRef } from "react"
-import { SearchIcon } from '../Icons/Search/Search'
+import type { FC, ComponentPropsWithoutRef } from 'react'
+import { SearchIcon } from '@/ui/Icons/Search/Search'
 
-type InputSearchProps = ComponentPropsWithoutRef<'form'> 
+type InputSearchProps = ComponentPropsWithoutRef<'form'>
 
 export const InputSearch: FC<InputSearchProps> = ({
   placeholder = 'Search',
@@ -19,7 +19,7 @@ export const InputSearch: FC<InputSearchProps> = ({
         <input
           type="search"
           id="search"
-          className='text-white/35 bg-input-color px-4 py-3 focus:outline-none rounded-full pl-12'
+          className="w-64 px-4 py-3 pl-12 bg-input-color text-white/35 rounded-full focus:outline-none"
           placeholder={placeholder}
         />
       </div>
