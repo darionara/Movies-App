@@ -25,9 +25,6 @@ export const Header: FC = () => {
     setActiveMenuItem(null)
   }
   
-  const handleDropdownMouseLeave = resetActiveMenuItem
-  const handleOptionSelect = resetActiveMenuItem
-
   return (
     <header className="bg-inherit flex items-center py-14 justify-between gap-10">
       <div className="min-w-[600px] ml-20 w-[700px] flex justify-between items-center">
@@ -37,8 +34,8 @@ export const Header: FC = () => {
         <NavMenu
           activeItem={activeMenuItem}
           onMouseOver={handleMenuHover}
-          onMouseLeave={handleDropdownMouseLeave}
-          onOptionSelect={handleOptionSelect}
+          onMouseLeave={resetActiveMenuItem}
+          onOptionSelect={resetActiveMenuItem}
         />
       </div>
       <div className="min-w-[450px] mr-20 flex justify-between">
