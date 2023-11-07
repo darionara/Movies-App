@@ -35,6 +35,8 @@
     "@types/rc-slider": "^9.3.1",
     "@types/react": "^18.0.22",
     "@types/react-dom": "^18.0.7",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
     "autoprefixer": "^10.4.15",
     "chromatic": "^6.24.1",
     "eslint": "^8.53.0",
