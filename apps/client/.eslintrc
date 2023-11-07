@@ -1,0 +1,20 @@
+{
+  "root": true,
+  "extends": [
+    "turbo",
+    "plugin:storybook/recommended",
+    "next/core-web-vitals",
+    "airbnb-base",
+    "prettier"
+  ],
+  "parserOptions": {
+    "babelOptions": {
+      "presets": ["next/babel"]
+    }
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "import/extensions": "off"
+  }
+}
