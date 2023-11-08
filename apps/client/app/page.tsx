@@ -1,21 +1,16 @@
 'use client'
+import { FiltersSidebar } from '@/ui/FiltersSidebar/FiltersSidebar'
+import { MainPanel } from '@/ui/MainPanel/MainPanel'
+import { Header } from '@/ui/Header/Header'
 
-import Comp from './Comp'
-
-export default function Page() {
-  const onClick = () => {
-    alert('Hello')
-  }
-
+export default function HomePage() {
   return (
-    <>
-      <h1>Client app</h1>
-      <button onClick={onClick}>Hello</button>
-      <Comp>
-        {(variable) => {
-          return <div>{variable}</div>
-        }}
-      </Comp>
-    </>
+    <div>
+      <Header />
+      <FiltersSidebar />
+      <main>
+        <MainPanel />
+      </main>
+    </div>
   )
 }
