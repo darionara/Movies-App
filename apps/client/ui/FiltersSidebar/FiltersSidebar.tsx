@@ -3,17 +3,12 @@ import { CustomSlider } from '@/ui/Slider/Slider'
 import { InputText } from '@/ui/InputText/InputText'
 import { FilterHeading } from '@/ui/FilterHeading/FilterHeading'
 import { GenresList } from '@/ui/PillsList/PillsList'
-import type { FC, ComponentPropsWithoutRef } from 'react'
-import clsx from 'clsx'
+import type { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSliderValue, toggleGenre } from '@/store/FiltersSidebarSlice'
 import { RootState } from '@/store/Store'
 
-type SidebarProps = ComponentPropsWithoutRef<'aside'> & {
-  className?: string
-}
-
-export const FiltersSidebar: FC<SidebarProps> = (className) => {
+export const FiltersSidebar: FC = () => {
   const dispatch = useDispatch()
   const sliderValue = useSelector(
     (state: RootState) => state.filters.sliderValue,
@@ -31,9 +26,7 @@ export const FiltersSidebar: FC<SidebarProps> = (className) => {
   }
 
   return (
-    <aside
-      className={clsx('flex flex-col gap-7 w-60 ml-20 mr-11 mb-12', className)}
-    >
+    <aside className="flex flex-col gap-7 w-60 ml-20 mr-11 mb-12">
       <h2 className="text-lg font-bold text-text-color cursor-default">
         Filters
       </h2>

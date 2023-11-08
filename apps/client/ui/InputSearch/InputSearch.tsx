@@ -1,5 +1,5 @@
 import type { FC, ComponentPropsWithoutRef } from 'react'
-import { SearchIcon } from '../Icons/Search/Search'
+import { SearchIcon } from '@/ui/Icons/Search/Search'
 
 type InputSearchProps = ComponentPropsWithoutRef<'form'>
 

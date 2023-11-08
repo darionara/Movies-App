@@ -12,60 +12,62 @@ const menuItems = ['TV Shows', 'Movies', 'Series', 'Animations']
 
 const dropdownMenuItems = [
   {
-    Icon: <FireIcon />,
+    Icon: FireIcon,
     text: 'Popular',
   },
   {
-    Icon: <PlayIcon />,
+    Icon: PlayIcon,
     text: 'Now Playing',
   },
   {
-    Icon: <CalendarDaysIcon />,
+    Icon: CalendarDaysIcon,
     text: 'Upcoming',
   },
   {
-    Icon: <StarIcon />,
+    Icon: StarIcon,
     text: 'Top Rated',
   },
 ]
 
-type NavMenuProps = ComponentPropsWithoutRef<'ul'> & {
-  className?: string
+type NavMenuProps = Omit<ComponentPropsWithoutRef<'ul'>, 'onMouseOver'> & {
   activeItem?: string
-  onHover?: (option: string) => void
-  isOpen?: boolean
+  onMouseOver?: (item: string) => void
   onMouseLeave?: () => void
+  onOptionSelect?: () => void
 }
 
 export const NavMenu: FC<NavMenuProps> = ({
   className,
   activeItem,
-  onHover,
-  isOpen,
+  onMouseOver,
   onMouseLeave,
+  onOptionSelect,
+  ...props
 }) => {
   return (
-    <ul className={clsx('flex flex-row gap-8', className)}>
+    <ul className={clsx('flex flex-row gap-8', className)} {...props}>
       {menuItems.map((item) => (
         <li
           key={item}
           className={clsx(
-            'relative text-lg font-bold capitalize cursor-default whitespace-nowrap',
-            'hover:text-text-color transition-colors transition-ease-in-out duration-100',
+            'h-12 leading-[48px] relative text-lg font-bold capitalize cursor-default whitespace-nowrap',
             {
+              'hover:text-text-color transition-colors transition-ease-in-out duration-100': !activeItem,
               'text-text-color cursor-pointer': activeItem === item,
               'text-text-color/[.50]': activeItem !== item,
             },
           )}
-          onMouseOver={() => onHover(item)}
+          onMouseOver={() => onMouseOver(item)}
+          onMouseLeave={onMouseLeave}
         >
           {item}
           {activeItem === item && (
             <DropdownMenu
-              isOpen={isOpen}
-              onMouseLeave={onMouseLeave}
-              className="absolute top-10 text-sm font-semibold"
+              className="absolute text-sm font-semibold"
               menuItems={dropdownMenuItems}
+              onMouseOver={() => onMouseOver(item)}
+              onMouseLeave={onMouseLeave}
+              onOptionSelect={onOptionSelect}
             />
           )}
         </li>
