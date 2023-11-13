@@ -31,5 +31,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'error',
     'import/order': ['error', { 'newlines-between': 'always' }],
     'arrow-body-style': 'off',
+    'react/function-component-definition': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
 };
