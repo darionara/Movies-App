@@ -1,29 +1,34 @@
-import type { FC, ComponentPropsWithoutRef } from 'react'
-import clsx from 'clsx'
-import { MenuItem } from '@/ui/DropdownMenu/DropdownMenuItem'
+import type { FC, ComponentPropsWithoutRef } from 'react';
+import clsx from 'clsx';
+
+import MenuItem from '@/ui/DropdownMenu/DropdownMenuItem';
 
 type DropdownProps = ComponentPropsWithoutRef<'ul'> & {
-  onOptionSelect?: () => void
-  menuItems: Array<{ Icon: FC; text: string }>
-}
+  menuItems: Array<{ Icon: FC; text: string }>;
+  resetActiveMenuItem: () => void;
+};
 
-export const DropdownMenu: FC<DropdownProps> = ({
+const DropdownMenu: FC<DropdownProps> = ({
   className,
-  onOptionSelect,
   menuItems,
+  resetActiveMenuItem,
   ...props
 }) => {
   return (
     <ul
-      className={clsx(
-        'z-10 w-[180px] py-4 rounded-lg bg-white',
-        className,
-      )}
+      className={clsx('z-10 w-[180px] rounded-lg bg-white py-4', className)}
       {...props}
+      onMouseLeave={() => resetActiveMenuItem()}
     >
       {menuItems.map((item) => (
-        <MenuItem key={item.text} onOptionSelect={onOptionSelect} {...item} />
+        <MenuItem
+          key={item.text}
+          resetActiveMenuItem={resetActiveMenuItem}
+          {...item}
+        />
       ))}
     </ul>
-  )
-}
+  );
+};
+
+export default DropdownMenu;
