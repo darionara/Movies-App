@@ -8,11 +8,10 @@ type CustomSliderProps = Omit<
   ComponentPropsWithoutRef<'input'>,
   'value' | 'onChange'
 > & {
-  // why I cannot define those types here?
-  min?: number
-  max?: number
-  step?: number
-  handleRender?: ReactNode
+  min: number;
+  max: number;
+  step: number;
+  handleRender: ReactNode;
 } & (
     | {
         range: true;
