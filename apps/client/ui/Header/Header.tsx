@@ -1,9 +1,9 @@
 import type { FC } from 'react';
 
-import { LogoIcon } from '@/ui/Icons/Logo/Logo';
+import LogoIcon from '@/ui/Icons/Logo/Logo';
 import NavMenu from '@/ui/NavMenu/NavMenu';
-import { InputSearch } from '@/ui/InputSearch/InputSearch';
-import { Avatar } from '@/ui/Avatar/Avatar';
+import InputSearch from '@/ui/InputSearch/InputSearch';
+import Avatar from '@/ui/Avatar/Avatar';
 
 // TODO: remove the object when data will go from API
 const mockedUserData = {

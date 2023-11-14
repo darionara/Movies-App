@@ -1,7 +1,8 @@
-import type { FC } from 'react'
-import { IconProps } from '@/types/IconType'
+import type { FC } from 'react';
 
-export const ArrowDownIcon: FC<IconProps> = (props) => (
+import { IconProps } from '@/types/IconType';
+
+const ArrowDownIcon: FC<IconProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -74,4 +75,6 @@ export const ArrowDownIcon: FC<IconProps> = (props) => (
       </filter>
     </defs>
   </svg>
-)
+);
+
+export default ArrowDownIcon;

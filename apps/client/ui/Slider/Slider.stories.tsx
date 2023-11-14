@@ -1,5 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { CustomSlider } from './Slider'
+import type { Meta, StoryObj } from '@storybook/react';
+
+import CustomSlider from './Slider';
 
 const meta = {
   title: 'Components/Slider',
@@ -9,31 +10,31 @@ const meta = {
   },
   argTypes: {
     range: {
-      control: 'boolean'
+      control: 'boolean',
     },
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof CustomSlider>
+} satisfies Meta<typeof CustomSlider>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Slider: Story = {
   args: {
     range: false,
     min: 0,
     max: 500,
-    step: 50
+    step: 50,
+    handleRender: <div>placeholder</div>,
   },
-}
+};
 
 export const Range: Story = {
   args: {
     range: true,
     min: 0,
     max: 10,
-    step: 1
-  }
-}
-
-
+    step: 1,
+    handleRender: <div>placeholder</div>,
+  },
+};

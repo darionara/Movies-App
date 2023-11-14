@@ -1,13 +1,11 @@
-import type { FC } from 'react'
+import type { FC } from 'react';
 
 type MainPanelProps = {
-  className?: string
-}
+  className?: string;
+};
 
-export const MainPanel: FC<MainPanelProps> = () => {
-  return (
-    <div>
+const MainPanel: FC<MainPanelProps> = () => {
+  return <div />;
+};
 
-    </div>
-  )
-}
+export default MainPanel;

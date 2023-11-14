@@ -1,7 +1,8 @@
-import type { FC } from 'react'
-import { IconProps } from '@/types/IconType'
+import type { FC } from 'react';
 
-export const SquaresIcon: FC<IconProps> = (props) => (
+import { IconProps } from '@/types/IconType';
+
+const SquaresIcon: FC<IconProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -17,4 +18,6 @@ export const SquaresIcon: FC<IconProps> = (props) => (
       fill="#D02C1E"
     />
   </svg>
-)
+);
+
+export default SquaresIcon;

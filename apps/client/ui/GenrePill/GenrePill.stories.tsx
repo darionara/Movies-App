@@ -17,5 +17,6 @@ type Story = StoryObj<typeof meta>;
 export const Pill: Story = {
   args: {
     children: 'action',
+    isActive: true,
   },
 };

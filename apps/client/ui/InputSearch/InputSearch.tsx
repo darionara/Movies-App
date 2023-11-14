@@ -1,28 +1,28 @@
-import type { FC, ComponentPropsWithoutRef } from 'react'
-import { SearchIcon } from '@/ui/Icons/Search/Search'
+import type { FC, ComponentPropsWithoutRef } from 'react';
+import clsx from 'clsx';
 
-type InputSearchProps = ComponentPropsWithoutRef<'form'>
+import SearchIcon from '@/ui/Icons/Search/Search';
 
-export const InputSearch: FC<InputSearchProps> = ({
+type InputSearchProps = ComponentPropsWithoutRef<'div'>;
+
+const InputSearch: FC<InputSearchProps> = ({
   placeholder = 'Search',
+  className,
   ...props
 }) => {
   return (
-    <form {...props}>
-      <label htmlFor="search" className="mb-2 text-sm text-gray-900 sr-only">
-        Search
-      </label>
-      <div className="relative flex items-center">
-        <div className="absolute pl-4">
-          <SearchIcon />
-        </div>
-        <input
-          type="search"
-          id="search"
-          className="w-64 px-4 py-3 pl-12 bg-input-color text-white/35 rounded-full focus:outline-none"
-          placeholder={placeholder}
-        />
+    <div className={clsx('relative flex items-center', className)} {...props}>
+      <div className="absolute pl-4">
+        <SearchIcon />
       </div>
-    </form>
-  )
-}
+      <input
+        type="search"
+        id="search"
+        className="text-white/35 w-64 rounded-full bg-input-color px-4 py-3 pl-12 focus:outline-none"
+        placeholder={placeholder}
+      />
+    </div>
+  );
+};
+
+export default InputSearch;
