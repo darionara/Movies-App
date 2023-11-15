@@ -1,47 +1,32 @@
-import { LogoIcon } from '@/ui/Icons/Logo/Logo'
-import { NavMenu } from '@/ui/NavMenu/NavMenu'
-import { InputSearch } from '@/ui/InputSearch/InputSearch'
-import { Avatar } from '@/ui/Avatar/Avatar'
-import { useState } from 'react'
-import type { FC } from 'react'
+import type { FC } from 'react';
+
+import { LogoIcon } from '@/ui/Icons/Logo/Logo';
+import NavMenu from '@/ui/NavMenu/NavMenu';
+import { InputSearch } from '@/ui/InputSearch/InputSearch';
+import { Avatar } from '@/ui/Avatar/Avatar';
 
 // TODO: remove the object when data will go from API
 const mockedUserData = {
   name: 'Joachim Kowalski',
   email: 'j.kowalski@gmail.com',
   avatarSrc: '/avatar.svg',
-}
+};
 
-export const Header: FC = () => {
-  const [activeMenuItem, setActiveMenuItem] = useState<string>(null)
-  
-  const handleMenuHover = (item: string) => {
-    setActiveMenuItem((prevItem) => {
-      return prevItem !== item ? item : null
-    })
-  }
-
-  const resetActiveMenuItem = () => {
-    setActiveMenuItem(null)
-  }
-  
+const Header: FC = () => {
   return (
-    <header className="bg-inherit flex items-center py-14 justify-between gap-10">
-      <div className="min-w-[600px] ml-20 w-[700px] flex justify-between items-center">
-        <a href="/">
+    <header className="flex items-center justify-between gap-10 bg-inherit py-14">
+      <div className="ml-20 flex w-[700px] min-w-[600px] items-center justify-between">
+        <a href="/" aria-label="logo">
           <LogoIcon />
         </a>
-        <NavMenu
-          activeItem={activeMenuItem}
-          onMouseOver={handleMenuHover}
-          onMouseLeave={resetActiveMenuItem}
-          onOptionSelect={resetActiveMenuItem}
-        />
+        <NavMenu />
       </div>
-      <div className="min-w-[450px] mr-20 flex justify-between">
+      <div className="mr-20 flex min-w-[450px] justify-between">
         <InputSearch />
         <Avatar {...mockedUserData} />
       </div>
     </header>
-  )
-}
+  );
+};
+
+export default Header;

@@ -1,5 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { GenrePill } from './Pill'
+import type { Meta, StoryObj } from '@storybook/react';
+
+import GenrePill from './GenrePill';
 
 const meta = {
   title: 'Components/Pill',
@@ -8,13 +9,13 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof GenrePill>
+} satisfies Meta<typeof GenrePill>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Pill: Story = {
   args: {
     children: 'action',
   },
-}
+};
