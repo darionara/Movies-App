@@ -1,9 +1,9 @@
-import type { FC, ComponentPropsWithoutRef } from 'react'
-import clsx from 'clsx'
+import type { FC, ComponentPropsWithoutRef } from 'react';
+import clsx from 'clsx';
 
-type FilterHeadingProps = ComponentPropsWithoutRef<'h3'>
+type FilterHeadingProps = ComponentPropsWithoutRef<'h3'>;
 
-export const FilterHeading: FC<FilterHeadingProps> = ({
+const FilterHeading: FC<FilterHeadingProps> = ({
   children,
   className,
   ...props
@@ -11,12 +11,14 @@ export const FilterHeading: FC<FilterHeadingProps> = ({
   return (
     <h3
       className={clsx(
-        'text-white/[.35] text-xs font-bold uppercase cursor-default',
+        'cursor-default text-xs font-bold uppercase text-white/[.35]',
         className,
       )}
       {...props}
     >
       {children}
     </h3>
-  )
-}
+  );
+};
+
+export default FilterHeading;

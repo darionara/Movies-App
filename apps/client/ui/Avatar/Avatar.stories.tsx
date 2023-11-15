@@ -1,6 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { Avatar as AvatarComp} from '@/ui/Avatar/Avatar'
+import AvatarComp from '@/ui/Avatar/Avatar';
+import AvatarImg from '@/public/avatar.svg';
 
 const meta = {
   title: 'Components/Avatar',
@@ -12,25 +13,29 @@ const meta = {
   argTypes: {
     name: {
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     email: {
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     avatarSrc: {
       control: {
-        type: 'text'
-      }
-    }
-  }
-} satisfies Meta<typeof AvatarComp>
+        type: 'text',
+      },
+    },
+  },
+} satisfies Meta<typeof AvatarComp>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Avatar: Story = {
-  args: {},
-}
+  args: {
+    name: 'Joachim Kowalski',
+    email: 'j.kowalski@gmail.com',
+    avatarSrc: AvatarImg,
+  },
+};

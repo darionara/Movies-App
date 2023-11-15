@@ -1,5 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { FilterHeading } from './FilterHeading'
+import type { Meta, StoryObj } from '@storybook/react';
+
+import FilterHeading from './FilterHeading';
 
 const meta = {
   title: 'Components/Heading',
@@ -8,13 +9,13 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof FilterHeading>
+} satisfies Meta<typeof FilterHeading>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Heading3: Story = {
   args: {
     children: 'genres',
   },
-}
+};

@@ -1,9 +1,9 @@
 import type { FC } from 'react';
 
-import { Button } from '@/ui/Button/Button';
+import Button from '@/ui/Button/Button';
 import CustomSlider from '@/ui/Slider/Slider';
-import { InputText } from '@/ui/InputText/InputText';
-import { FilterHeading } from '@/ui/FilterHeading/FilterHeading';
+import InputText from '@/ui/InputText/InputText';
+import FilterHeading from '@/ui/FilterHeading/FilterHeading';
 import GenresList from '@/ui/GenresList/GenresList';
 
 const FiltersSidebar: FC = () => {

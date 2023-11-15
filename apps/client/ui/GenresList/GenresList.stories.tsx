@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { GenresList } from './GenresList';
+import GenresList from './GenresList';
 
 const meta = {
   title: 'Components/PillsList',
