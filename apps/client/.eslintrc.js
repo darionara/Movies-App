@@ -33,5 +33,11 @@ module.exports = {
     'arrow-body-style': 'off',
     'react/function-component-definition': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'react/require-default-props': [
+      'error',
+      {
+        functions: 'defaultArguments',
+      },
+    ],
   },
 };

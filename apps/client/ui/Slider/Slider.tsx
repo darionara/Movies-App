@@ -8,10 +8,10 @@ type CustomSliderProps = Omit<
   ComponentPropsWithoutRef<'input'>,
   'value' | 'onChange'
 > & {
-  min: number;
-  max: number;
-  step: number;
-  handleRender: ReactNode;
+  min?: number;
+  max?: number;
+  step?: number;
+  handleRender?: ReactNode;
 } & (
     | {
         range: true;
