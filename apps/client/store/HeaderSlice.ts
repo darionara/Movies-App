@@ -5,7 +5,7 @@ export type HeaderState = {
 };
 
 const initialState: HeaderState = {
-  activeMenuItem: 'Movies',
+  activeMenuItem: '',
 };
 
 const headerSlice = createSlice({
