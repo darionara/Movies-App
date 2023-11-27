@@ -6,9 +6,9 @@ import Header from '@/ui/Header/Header';
 
 export default function HomePage() {
   return (
-    <div className="pb-16">
+    <div className="m-auto max-w-screen-xl px-10 pb-16 lg:px-20 xl:p-0">
       <Header />
-      <div className="mx-20 flex gap-12">
+      <div className="flex gap-12">
         <FiltersSidebar />
         <MainPanel />
       </div>

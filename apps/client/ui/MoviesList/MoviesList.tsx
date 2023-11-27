@@ -91,11 +91,14 @@ const mockedMoviesData = [
   },
 ];
 
-type MovieListProps = ComponentPropsWithoutRef<'ul'>;
+type MoviesListProps = ComponentPropsWithoutRef<'ul'>;
 
-const MovieList: FC<MovieListProps> = ({ className, ...props }) => {
+const MoviesList: FC<MoviesListProps> = ({ className, ...props }) => {
   return (
-    <ul className={clsx('flex flex-wrap gap-8', className)} {...props}>
+    <ul
+      className={clsx('flex flex-wrap justify-between gap-8', className)}
+      {...props}
+    >
       {mockedMoviesData.map((movieData) => {
         return (
           <li key={movieData.title}>
@@ -113,4 +116,4 @@ const MovieList: FC<MovieListProps> = ({ className, ...props }) => {
   );
 };
 
-export default MovieList;
+export default MoviesList;

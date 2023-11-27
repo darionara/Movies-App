@@ -30,8 +30,9 @@ const MovieTile: FC<MovieTileProps> = ({
       />
       <div
         className={clsx(
-          'absolute bottom-0 flex h-full w-full items-end rounded-xl',
+          'absolute bottom-0 flex h-full w-full cursor-pointer items-end rounded-xl',
           'bg-gradient-to-b from-transparent from-30% via-black via-80% to-black p-3.5',
+          'hover:from-10% hover:via-70%',
         )}
       >
         <div className="flex w-full items-end justify-between">

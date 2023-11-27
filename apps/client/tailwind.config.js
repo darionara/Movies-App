@@ -19,9 +19,6 @@ module.exports = {
         'black-grey': '#19191B',
         'shadow-grey': '#141417'
       },
-      width: {
-        'max-page-width': '350rem'
-      }
     },
   },
   plugins: [],
