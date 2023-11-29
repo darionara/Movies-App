@@ -1,7 +1,9 @@
 import type { ComponentPropsWithoutRef, FC } from 'react';
 import clsx from 'clsx';
+import { useSelector } from 'react-redux';
 
 import MovieTile from '@/ui/MovieTile/MovieTile';
+import { RootState } from '@/store/store';
 
 // TODO: remove the object when data will go from API
 const mockedMoviesData = [
@@ -94,6 +96,7 @@ const mockedMoviesData = [
 type MoviesListProps = ComponentPropsWithoutRef<'ul'>;
 
 const MoviesList: FC<MoviesListProps> = ({ className, ...props }) => {
+  const isGrid = useSelector((state: RootState) => state.main.isGrid);
   return (
     <ul
       className={clsx('flex flex-wrap justify-between gap-8', className)}
@@ -101,7 +104,13 @@ const MoviesList: FC<MoviesListProps> = ({ className, ...props }) => {
     >
       {mockedMoviesData.map((movieData) => {
         return (
-          <li key={movieData.title}>
+          <li
+            key={movieData.title}
+            className={clsx('cursor-pointer', {
+              'transition-ease-in-out w-full rounded-xl transition-colors duration-200 odd:bg-secondary hover:bg-dark-grey':
+                !isGrid,
+            })}
+          >
             <MovieTile
               title={movieData.title}
               year={movieData.year}
