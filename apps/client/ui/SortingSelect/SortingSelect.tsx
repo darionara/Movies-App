@@ -1,32 +1,31 @@
 import type { ComponentPropsWithoutRef } from 'react';
 import React, { useState, useEffect, useRef, KeyboardEvent } from 'react';
 import clsx from 'clsx';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { selectSortOption } from '@/store/MainSlice';
+import { RootState } from '@/store/store';
 import ArrowDownIcon from '@/ui/Icons/ArrowDown/ArrowDown';
 
-type SortingSelectProps = Omit<
-  ComponentPropsWithoutRef<'select'>,
-  'onSelect'
-> & {
+type SortingSelectProps = ComponentPropsWithoutRef<'select'> & {
   options: string[];
-  selected: string;
-  onSelect: (option: string) => void;
 };
 
 const SortingSelect: React.FC<SortingSelectProps> = ({
   options,
-  selected,
-  onSelect,
   className,
 }) => {
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const [focusedIndex, setFocusedIndex] = useState(null);
+  const [focusedIndex, setFocusedIndex] = useState(2);
+  const selected = useSelector((state: RootState) => state.main.selected);
+
   const selectRef = useRef<HTMLDivElement>(null);
   const ulRef = useRef<HTMLUListElement>(null);
   const liRefs = useRef<(HTMLLIElement | null)[]>([]);
 
   function selectOption(option: string) {
-    onSelect(option);
+    dispatch(selectSortOption(option));
     setIsOpen(false);
   }
 
@@ -92,7 +91,7 @@ const SortingSelect: React.FC<SortingSelectProps> = ({
     >
       <button
         className={clsx(
-          'flex justify-between bg-background-color',
+          'flex items-center justify-between bg-background-color',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300',
         )}
         onClick={() => setIsOpen(!isOpen)}
