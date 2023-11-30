@@ -112,8 +112,8 @@ const SortingSelect: React.FC<SortingSelectProps> = ({
           ref={ulRef}
         >
           {options.map((option, index) => (
-            // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
             <li
+              role="menuitem"
               key={option}
               className={clsx(
                 'cursor-pointer px-4 py-2 text-xs text-black',
@@ -124,6 +124,7 @@ const SortingSelect: React.FC<SortingSelectProps> = ({
                 },
               )}
               onClick={() => selectOption(option)}
+              onKeyDown={() => selectOption(option)}
               // eslint-disable-next-line no-return-assign
               ref={(li) => (liRefs.current[index] = li)}
             >
