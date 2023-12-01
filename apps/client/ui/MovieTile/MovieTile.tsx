@@ -60,7 +60,7 @@ const MovieTile: FC<MovieTileProps> = ({
       </div>
     </div>
   ) : (
-    <div className="flex items-center gap-4 rounded-xl border-2 border-secondary">
+    <div className="flex items-center gap-4">
       <Image
         src={imageSrc}
         alt={title}
@@ -74,7 +74,7 @@ const MovieTile: FC<MovieTileProps> = ({
         </h2>
         <p className="text-xs text-text-color/[0.5]">{year}</p>
       </div>
-      <div className="ml-auto mr-10 flex items-center">
+      <div className="ml-auto flex items-center">
         <span className="mr-3">Rating:</span>
         <div className="relative flex items-center">
           <div

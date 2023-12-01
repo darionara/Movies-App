@@ -99,7 +99,11 @@ const MoviesList: FC<MoviesListProps> = ({ className, ...props }) => {
   const isGrid = useSelector((state: RootState) => state.main.isGrid);
   return (
     <ul
-      className={clsx('flex flex-wrap justify-between gap-8', className)}
+      className={clsx(
+        'flex flex-wrap justify-between',
+        { 'gap-8': isGrid },
+        className,
+      )}
       {...props}
     >
       {mockedMoviesData.map((movieData) => {
@@ -107,7 +111,7 @@ const MoviesList: FC<MoviesListProps> = ({ className, ...props }) => {
           <li
             key={movieData.title}
             className={clsx('cursor-pointer', {
-              'transition-ease-in-out w-full rounded-xl transition-colors duration-200 odd:bg-secondary hover:bg-dark-grey':
+              'transition-ease-in-out w-full px-10 py-4 transition-colors duration-200 even:border-y even:border-white/10 even:bg-black-grey/60 hover:bg-black/20':
                 !isGrid,
             })}
           >
