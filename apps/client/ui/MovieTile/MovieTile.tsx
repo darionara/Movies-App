@@ -7,7 +7,7 @@ import { RootState } from '@/store/store';
 
 type MovieTileProps = ComponentPropsWithoutRef<'div'> & {
   title: string;
-  year: number;
+  year: string;
   rating: number;
   place: number;
   imageSrc: string;
