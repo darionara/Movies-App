@@ -61,6 +61,7 @@ const MovieTile: FC<MovieTileProps> = ({
     </div>
   ) : (
     <div className="flex items-center gap-4">
+      {/* I don't like the behavior of the images when the screen size changes - I want them to shrink like on the tmdb site but I can't get that result */}
       <Image
         src={imageSrc}
         alt={title}
