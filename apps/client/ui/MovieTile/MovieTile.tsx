@@ -2,6 +2,8 @@ import type { FC, ComponentPropsWithoutRef } from 'react';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
+// TODO: remove after fetching the image url
+import movie1 from '@/public/movie1.png';
 
 import { RootState } from '@/store/store';
 
@@ -18,20 +20,22 @@ const MovieTile: FC<MovieTileProps> = ({
   year,
   rating,
   place,
-  imageSrc,
+  //imageSrc,
   className,
   ...props
 }) => {
   const isGrid = useSelector((state: RootState) => state.main.isGrid);
   return isGrid ? (
     <div className={clsx('relative', className)} {...props}>
-      <Image
-        src={imageSrc}
-        alt={title}
-        className="relative rounded-xl"
-        width={211}
-        height={301}
-      />
+      <div className="relative pb-[150%]">
+        <Image
+          src={movie1}
+          alt={title}
+          className="relative rounded-xl"
+          fill
+          //sizes="(max-width: 500px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw"
+        />
+      </div>
       <div
         className={clsx(
           'absolute bottom-0 flex h-full w-full items-end rounded-xl',
@@ -61,13 +65,12 @@ const MovieTile: FC<MovieTileProps> = ({
     </div>
   ) : (
     <div className="flex items-center gap-4">
-      {/* I don't like the behavior of the images when the screen size changes - I want them to shrink like on the tmdb site but I can't get that result */}
       <Image
-        src={imageSrc}
+        src={movie1}
         alt={title}
-        width={70}
-        height={50} // is it necessary to set this value?
         className="rounded-xl"
+        width={80}
+        height={120}
       />
       <div>
         <h2 className="text-base font-semibold">

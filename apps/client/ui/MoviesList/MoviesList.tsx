@@ -43,10 +43,20 @@ const MoviesList: FC<MoviesListProps> = ({ className, ...props }) => {
         return (
           <li
             key={movie.id}
-            className={clsx('cursor-pointer', {
-              'transition-ease-in-out w-full px-10 py-4 transition-colors duration-200 even:border-y even:border-white/10 even:bg-black-grey/60 hover:bg-black/20':
-                !isGrid,
-            })}
+            className={clsx(
+              'cursor-pointer',
+              {
+                'transition-ease-in-out transition-[background-color] duration-200 even:border-y even:border-white/10 even:bg-black-grey/60 hover:bg-black/20':
+                  !isGrid,
+              },
+              {
+                'w-full px-10 py-4': !isGrid,
+              },
+              // it's not the ideal solution - when there are 3 tiles in a row the last row has 2 tiles which occupy the whole width
+              {
+                'w-full flex-auto md:w-1/3 lg:w-1/4 xl:w-1/5': isGrid,
+              },
+            )}
           >
             <MovieTile
               title={movie.title}
