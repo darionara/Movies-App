@@ -17,7 +17,7 @@ const SortingSelect: React.FC<SortingSelectProps> = ({
 }) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const [focusedIndex, setFocusedIndex] = useState(2);
+  const [focusedIndex, setFocusedIndex] = useState(null);
   const selected = useSelector((state: RootState) => state.main.selected);
 
   const selectRef = useRef<HTMLDivElement>(null);
@@ -108,7 +108,7 @@ const SortingSelect: React.FC<SortingSelectProps> = ({
       </button>
       {isOpen && (
         <ul
-          className="absolute left-0 right-0 top-full z-10 mt-1 w-48 rounded-md border bg-white"
+          className="absolute right-0 top-full z-10 mt-1 w-48 rounded-md border bg-white"
           ref={ulRef}
         >
           {options.map((option, index) => (

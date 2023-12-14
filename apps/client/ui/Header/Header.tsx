@@ -14,7 +14,7 @@ const mockedUserData = {
 
 const Header: FC = () => {
   return (
-    <header className="flex items-center justify-between gap-10 bg-inherit py-14">
+    <header className="flex items-center justify-between gap-10 xl:gap-40 bg-inherit py-14">
       <div className="flex w-[700px] min-w-[600px] items-center justify-between">
         <a href="/" aria-label="logo">
           <LogoIcon />
