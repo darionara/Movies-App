@@ -1,7 +1,7 @@
 # Movies app
 
 This is an app where you can see most popular movies.
-The app is fetching data from [TMDB](https://www.themoviedb.org/).
+The app is fetching data from [TMDB](https://www.themoviedb.org/) using it's v3 API (stable).
 
 ## What's inside?
 
@@ -34,11 +34,32 @@ npm build
 
 ### Develop
 
-To develop all apps and packages, run the following command:
+To develop all apps and packages, follow the steps:
 
+- Make sure your local `server` app connects to `TMDB` with your API key.
+  - Create account on [TMDB](https://www.themoviedb.org/)
+  - create `.env` file inside `./apps/server` - you can just run the command `cp ./apps/server/.example.env ./apps/server/.env` in the terminal.
+  - Go to [your account's settings](https://www.themoviedb.org/settings/api), copy your API key and pass it to `TMDB_API_KEY` variable.
+- Run the following command:
+
+```sh
+npm run dev
+# or - to run only client app (make sure your local client app is connected to some working server app)
+npm run dev:client
+# or - to run only server app
+npm run dec:server
 ```
-npm dev
+
+### Swagger - API documentation
+
+To open API documentation run:
+```sh
+npm run dev
+# or
+npm run dev:server
 ```
+
+and go to `http://localhost:3001/api` in the browser.
 
 ### Remote Caching
 
