@@ -1,18 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import SearchIcon from './Search';
+import GenresList from './GenresList';
 
 const meta = {
-  title: 'Icons/Search',
-  component: SearchIcon,
+  title: 'Components/PillsList',
+  component: GenresList,
   parameters: {
     layout: 'centered',
   },
-} satisfies Meta<typeof SearchIcon>;
+  tags: ['autodocs'],
+} satisfies Meta<typeof GenresList>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Search: Story = {
+export const PillsList: Story = {
   args: {},
 };

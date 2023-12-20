@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { SquaresIcon } from './Squares'
+import SquaresIcon from './Squares';
 
 const meta = {
   title: 'Icons/Squares',
@@ -8,11 +8,11 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-} satisfies Meta<typeof SquaresIcon>
+} satisfies Meta<typeof SquaresIcon>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Squares: Story = {
   args: {},
-}
+};

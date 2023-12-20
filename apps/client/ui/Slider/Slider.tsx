@@ -1,33 +1,33 @@
-import type { FC, ReactNode, ComponentPropsWithoutRef } from 'react'
-import 'rc-slider/assets/index.css'
-import Slider from 'rc-slider'
-import clsx from 'clsx'
-import './Slider.css'
+import type { FC, ReactNode, ComponentPropsWithoutRef } from 'react';
+import 'rc-slider/assets/index.css';
+import Slider from 'rc-slider';
+import clsx from 'clsx';
+import './Slider.css';
 
 type CustomSliderProps = Omit<
   ComponentPropsWithoutRef<'input'>,
   'value' | 'onChange'
 > & {
-  min?: number
-  max?: number
-  step?: number
-  handleRender?: ReactNode
+  min?: number;
+  max?: number;
+  step?: number;
+  handleRender?: ReactNode;
 } & (
     | {
-        range: true
-        defaultValue?: number[]
-        value?: number[]
-        onChange?: (value: number[]) => void
+        range: true;
+        defaultValue?: number[];
+        value?: number[];
+        onChange?: (value: number[]) => void;
       }
     | {
-        range?: false
-        defaultValue?: number
-        value?: number
-        onChange?: (value: number) => void
+        range?: false;
+        defaultValue?: number;
+        value?: number;
+        onChange?: (value: number) => void;
       }
-  )
+  );
 
-export const CustomSlider: FC<CustomSliderProps> = ({
+const CustomSlider: FC<CustomSliderProps> = ({
   range = false,
   min = 0,
   max = range ? 10 : 500,
@@ -43,10 +43,10 @@ export const CustomSlider: FC<CustomSliderProps> = ({
       <div className="relative">
         <div
           className={clsx(
-            'w-[45px] py-1.5 px-2 mt-[-40px]',
-            'absolute -translate-x-1/2 z-[1] pointer-events-none',
-            'bg-dark-grey text-xs text-text-color text-center',
-            'border-0 rounded shadow shadow-shadow-grey',
+            'mt-[-40px] w-[45px] px-2 py-1.5',
+            'pointer-events-none absolute z-[1] -translate-x-1/2',
+            'bg-dark-grey text-center text-xs text-text-color ',
+            'rounded border-0 shadow shadow-shadow-grey',
           )}
           style={{
             left: `${Math.round((propsRender.value / max) * 100)}%`,
@@ -54,20 +54,20 @@ export const CustomSlider: FC<CustomSliderProps> = ({
         >
           <span
             className={clsx(
-              'w-0 h-0 absolute bottom-[-4px] left-[50%] ml-[-4px]',
-              'border-transparent border-solid border-t-dark-grey border-t-4 border-x-4 border-b-0',
+              'absolute bottom-[-4px] left-[50%] ml-[-4px] h-0 w-0',
+              'border-x-4 border-b-0 border-t-4 border-solid border-transparent border-t-dark-grey',
             )}
-          ></span>
+          />
           {propsRender.value}
         </div>
         {origin}
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div
-      className={clsx('min-w-[180px] mt-12 mx-6 mb-0 h-9', className)}
+      className={clsx('mx-6 mb-0 mt-12 h-9 min-w-[180px] ', className)}
       {...props}
     >
       <Slider
@@ -81,14 +81,16 @@ export const CustomSlider: FC<CustomSliderProps> = ({
         onChange={onChange}
         className="w-full p-10"
       />
-      <div className="flex mt-1 justify-between">
-        <div className="flex-1 text-left ml-[-5px] text-sm text-gray-500">
+      <div className="mt-1 flex justify-between">
+        <div className="ml-[-5px] flex-1 text-left text-sm text-gray-500">
           {min}
         </div>
-        <div className="flex-1 text-right mr-[-7px] text-sm text-gray-500">
+        <div className="mr-[-7px] flex-1 text-right text-sm text-gray-500">
           {max}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default CustomSlider;

@@ -1,21 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import FilterHeading from './FilterHeading';
+import GenrePill from './GenrePill';
 
 const meta = {
-  title: 'Components/Heading',
-  component: FilterHeading,
+  title: 'Components/Pill',
+  component: GenrePill,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof FilterHeading>;
+} satisfies Meta<typeof GenrePill>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Heading3: Story = {
+export const Pill: Story = {
   args: {
-    children: 'genres',
+    children: 'action',
+    isActive: true,
   },
 };

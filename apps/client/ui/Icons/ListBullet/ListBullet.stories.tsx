@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { ListBulletIcon } from './ListBullet'
+import ListBulletIcon from './ListBullet';
 
 const meta = {
   title: 'Icons/ListBullet',
@@ -8,11 +8,11 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-} satisfies Meta<typeof ListBulletIcon>
+} satisfies Meta<typeof ListBulletIcon>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const ListBullet: Story = {
   args: {},
-}
+};

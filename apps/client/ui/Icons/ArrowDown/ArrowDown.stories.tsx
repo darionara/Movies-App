@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { ArrowDownIcon } from './ArrowDown'
+import ArrowDownIcon from './ArrowDown';
 
 const meta = {
   title: 'Icons/ArrowDown',
@@ -8,11 +8,11 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-} satisfies Meta<typeof ArrowDownIcon>
+} satisfies Meta<typeof ArrowDownIcon>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const ArrowDown: Story = {
   args: {},
-}
+};

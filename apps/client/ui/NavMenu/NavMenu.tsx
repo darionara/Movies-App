@@ -3,12 +3,16 @@ import {
   PlayIcon,
   CalendarDaysIcon,
   StarIcon,
-} from '@heroicons/react/20/solid'
-import type { FC, ComponentPropsWithoutRef } from 'react'
-import clsx from 'clsx'
-import { DropdownMenu } from '@/ui/DropdownMenu/DropdownMenu'
+} from '@heroicons/react/20/solid';
+import type { FC, ComponentPropsWithoutRef } from 'react';
+import clsx from 'clsx';
+import { useDispatch, useSelector } from 'react-redux';
 
-const menuItems = ['TV Shows', 'Movies', 'Series', 'Animations']
+import { setActiveMenuItem } from '@/store/HeaderSlice';
+import { RootState } from '@/store/store';
+import DropdownMenu from '@/ui/DropdownMenu/DropdownMenu';
+
+const menuItems = ['TV Shows', 'Movies', 'Series', 'Animations'];
 
 const dropdownMenuItems = [
   {
@@ -27,52 +31,54 @@ const dropdownMenuItems = [
     Icon: StarIcon,
     text: 'Top Rated',
   },
-]
+];
 
-type NavMenuProps = Omit<ComponentPropsWithoutRef<'ul'>, 'onMouseOver'> & {
-  activeItem?: string
-  onMouseOver?: (item: string) => void
-  onMouseLeave?: () => void
-  onOptionSelect?: () => void
-}
+type NavMenuProps = ComponentPropsWithoutRef<'ul'>;
 
-export const NavMenu: FC<NavMenuProps> = ({
-  className,
-  activeItem,
-  onMouseOver,
-  onMouseLeave,
-  onOptionSelect,
-  ...props
-}) => {
+const NavMenu: FC<NavMenuProps> = ({ className, ...props }) => {
+  const dispatch = useDispatch();
+  const activeMenuItem = useSelector(
+    (state: RootState) => state.header.activeMenuItem,
+  );
+
+  const handleMenuHover = (item: string) => {
+    dispatch(setActiveMenuItem(item));
+  };
+
+  const resetActiveMenuItem = () => {
+    dispatch(setActiveMenuItem(null));
+  };
+
   return (
     <ul className={clsx('flex flex-row gap-8', className)} {...props}>
       {menuItems.map((item) => (
         <li
           key={item}
           className={clsx(
-            'h-12 leading-[48px] relative text-lg font-bold capitalize cursor-default whitespace-nowrap',
+            'relative h-12 cursor-default whitespace-nowrap text-lg font-bold capitalize leading-[48px]',
             {
-              'hover:text-text-color transition-colors transition-ease-in-out duration-100': !activeItem,
-              'text-text-color cursor-pointer': activeItem === item,
-              'text-text-color/[.50]': activeItem !== item,
+              'transition-ease-in-out transition-colors duration-100 hover:text-text-color':
+                !activeMenuItem,
+              'cursor-pointer text-text-color': activeMenuItem === item,
+              'text-text-color/[.50]': activeMenuItem !== item,
             },
           )}
-          onMouseOver={() => onMouseOver(item)}
-          onMouseLeave={onMouseLeave}
+          onMouseOver={() => handleMenuHover(item)}
+          onFocus={() => handleMenuHover(item)}
+          onMouseLeave={() => resetActiveMenuItem()}
         >
           {item}
-          {activeItem === item && (
+          {activeMenuItem === item && (
             <DropdownMenu
               className="absolute text-sm font-semibold"
               menuItems={dropdownMenuItems}
-              //it doesn't work without these two function here, as you showed in your example
-              onMouseOver={() => onMouseOver(item)}
-              onMouseLeave={onMouseLeave}
-              onOptionSelect={onOptionSelect}
+              resetActiveMenuItem={resetActiveMenuItem}
             />
           )}
         </li>
       ))}
     </ul>
-  )
-}
+  );
+};
+
+export default NavMenu;
