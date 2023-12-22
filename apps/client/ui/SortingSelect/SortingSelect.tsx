@@ -16,9 +16,9 @@ const SortingSelect: React.FC<SortingSelectProps> = ({
   className,
 }) => {
   const dispatch = useDispatch();
-  const [isOpen, setIsOpen] = useState(false);
-  const [focusedIndex, setFocusedIndex] = useState(null);
   const selected = useSelector((state: RootState) => state.main.selected);
+  const [isOpen, setIsOpen] = useState(false);
+  const [focusedIndex, setFocusedIndex] = useState(options.indexOf(selected));
 
   const selectRef = useRef<HTMLDivElement>(null);
   const ulRef = useRef<HTMLUListElement>(null);
@@ -75,9 +75,11 @@ const SortingSelect: React.FC<SortingSelectProps> = ({
         if (focusedIndex >= 0 && focusedIndex < options.length) {
           selectOption(options[focusedIndex]);
         }
+        setFocusedIndex(focusedIndex);
         break;
       case 'Escape':
         setIsOpen(false);
+        setFocusedIndex(focusedIndex);
         break;
       default:
         break;
@@ -117,7 +119,7 @@ const SortingSelect: React.FC<SortingSelectProps> = ({
               key={option}
               className={clsx(
                 'cursor-pointer px-4 py-2 text-xs text-black',
-                'transition-ease-in-out p-3 transition-colors duration-200 hover:bg-gray-300',
+                'transition-ease-in-out p-3 transition-colors duration-200',
                 {
                   'font-bold': selected === option,
                   'bg-gray-300': focusedIndex === index,
@@ -125,6 +127,7 @@ const SortingSelect: React.FC<SortingSelectProps> = ({
               )}
               onClick={() => selectOption(option)}
               onKeyDown={() => selectOption(option)}
+              onMouseEnter={() => setFocusedIndex(index)}
               // eslint-disable-next-line no-return-assign
               ref={(li) => (liRefs.current[index] = li)}
             >

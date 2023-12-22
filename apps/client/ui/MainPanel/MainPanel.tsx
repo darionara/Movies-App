@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import MoviesList from '@/ui/MoviesList/MoviesList';
 import Button from '@/ui/Button/Button';
@@ -7,6 +7,8 @@ import SortingSelect from '@/ui//SortingSelect/SortingSelect';
 import ListBulletIcon from '@/ui/Icons/ListBullet/ListBullet';
 import SquaresIcon from '@/ui/Icons/Squares/Squares';
 import { setGridLayout, setListLayout } from '@/store/MainSlice';
+import { RootState } from '@/store/store';
+import clsx from 'clsx';
 
 const options = [
   'Popularity Descending',
@@ -27,7 +29,7 @@ const MainPanel: FC = () => {
   const handleListLayout = () => {
     dispatch(setListLayout());
   };
-
+  const isGrid = useSelector((state: RootState) => state.main.isGrid);
   return (
     <main className="w-full">
       <header className="flex items-center justify-between">
@@ -37,9 +39,18 @@ const MainPanel: FC = () => {
           <SortingSelect options={options} className="mr-2.5 pr-2" />
           <ListBulletIcon
             onClick={handleListLayout}
-            className="cursor-pointer"
+            className={clsx(
+              'cursor-pointer',
+              !isGrid ? 'fill-primary' : 'fill-white',
+            )}
           />
-          <SquaresIcon onClick={handleGridLayout} className="cursor-pointer" />
+          <SquaresIcon
+            onClick={handleGridLayout}
+            className={clsx(
+              'cursor-pointer',
+              isGrid ? 'fill-primary' : 'fill-white',
+            )}
+          />
         </div>
       </header>
       <section>

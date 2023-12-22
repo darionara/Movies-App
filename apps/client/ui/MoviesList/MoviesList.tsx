@@ -34,7 +34,10 @@ const MoviesList: FC<MoviesListProps> = ({ className, ...props }) => {
     <ul
       className={clsx(
         'flex flex-wrap justify-between',
-        { 'gap-8': isGrid },
+        {
+          'grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4':
+            isGrid,
+        },
         className,
       )}
       {...props}
@@ -52,17 +55,13 @@ const MoviesList: FC<MoviesListProps> = ({ className, ...props }) => {
               {
                 'w-full px-10 py-4': !isGrid,
               },
-              // it's not the ideal solution - when there are 3 tiles in a row the last row has 2 tiles which occupy the whole width
-              {
-                'w-full flex-auto md:w-1/3 lg:w-1/4 xl:w-1/5': isGrid,
-              },
             )}
           >
             <MovieTile
               title={movie.title}
-              year={movie.release_date.split('-')[0]} // ?
+              year={movie.release_date.split('-')[0]}
               rating={Math.floor(movie.rate)}
-              place={index + 1} // i know it's dumb but how to get the same result in another way? :D
+              place={index + 1}
               imageSrc={movie.backdrop_image}
             />
           </li>
