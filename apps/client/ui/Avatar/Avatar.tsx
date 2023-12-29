@@ -16,7 +16,7 @@ const Avatar: FC<AvatarProps> = ({
   ...props
 }) => {
   return (
-    <div className={clsx('flex items-center', className)} {...props}>
+    <div className={clsx('flex items-center min-w-[40px]', className)} {...props}>
       <Image
         src={avatarSrc}
         alt="Avatar"
@@ -24,7 +24,7 @@ const Avatar: FC<AvatarProps> = ({
         width={40}
         height={40}
       />
-      <div className="ml-2">
+      <div className="ml-2 hidden xl:block">
         <h4 className="text-xs font-semibold">{name}</h4>
         <p className="text-[10px] tracking-wide text-text-color/50">{email}</p>
       </div>

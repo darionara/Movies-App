@@ -67,7 +67,7 @@ const CustomSlider: FC<CustomSliderProps> = ({
 
   return (
     <div
-      className={clsx('mx-6 mb-0 mt-12 h-9 min-w-[180px] ', className)}
+      className={clsx('mx-6 mt-9 h-9 min-w-[180px] ', className)}
       {...props}
     >
       <Slider

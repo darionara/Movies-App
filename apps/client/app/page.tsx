@@ -6,12 +6,12 @@ import Header from '@/ui/Header/Header';
 
 export default function HomePage() {
   return (
-    <div>
+    <div className="m-auto max-w-screen-xl px-3 pb-16 md:px-6">
       <Header />
-      <FiltersSidebar />
-      <main>
+      <div className="flex gap-12">
+        <FiltersSidebar />
         <MainPanel />
-      </main>
+      </div>
     </div>
   );
 }

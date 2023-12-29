@@ -12,7 +12,7 @@ const InputText: FC<InputTextProps> = ({
     <input
       type="text"
       className={clsx(
-        'text-white/35 rounded-md bg-input-color px-4 py-3 focus:outline-none',
+        'text-white/30 rounded-md bg-input-color px-4 py-3 focus:outline-none placeholder:text-text-color/30',
         className,
       )}
       placeholder={placeholder}
