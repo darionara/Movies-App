@@ -5,8 +5,8 @@ import { IconProps } from '@/types/IconType';
 const LogoIcon: FC<IconProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="151"
-    height="32"
+    width={151}
+    height={32}
     viewBox="0 0 151 32"
     fill="none"
     {...props}
@@ -52,8 +52,8 @@ const LogoIcon: FC<IconProps> = (props) => (
       fill="#D02C1E"
     />
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M31.61 16C31.61 24.8366 24.5339 32 15.805 32C7.07614 32 0 24.8366 0 16C0 7.16344 7.07614 0 15.805 0C24.5339 0 31.61 7.16344 31.61 16ZM27.8168 16C27.8168 22.7158 22.4389 28.16 15.805 28.16C9.17107 28.16 3.7932 22.7158 3.7932 16C3.7932 9.28422 9.17107 3.84 15.805 3.84C22.4389 3.84 27.8168 9.28422 27.8168 16Z"
       fill="#D02C1E"
     />

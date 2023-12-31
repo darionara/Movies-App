@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 const openSans = Open_Sans({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-open-sans',
 });
 
 export default function RootLayout({
@@ -21,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={openSans.variable}>
+    <html lang="en" className={openSans.className}>
       <body>
         <ReduxProvider>{children}</ReduxProvider>
       </body>

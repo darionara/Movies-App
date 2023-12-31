@@ -8,7 +8,7 @@ import GenresList from '@/ui/GenresList/GenresList';
 
 const FiltersSidebar: FC = () => {
   return (
-    <aside className="mb-12 ml-20 mr-11 flex w-60 flex-col gap-7">
+    <aside className="mb-12 flex w-60 flex-col gap-7">
       <h2 className="cursor-default text-lg font-bold text-text-color">
         Filters
       </h2>
