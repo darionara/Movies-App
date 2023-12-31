@@ -1,4 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import type { SortingOptions } from 'common-types';
 
 export class TopRatedQuery {
   @ApiPropertyOptional({ description: 'Current page' })
@@ -26,8 +27,11 @@ export class TopRatedQuery {
   })
   genres: string;
 
-  @ApiPropertyOptional({ description: 'Sorting options' })
-  sort: string; // TODO: Enum or literal union
+  @ApiPropertyOptional({
+    description: 'Sorting options',
+    example: 'popularity.asc',
+  })
+  sort: SortingOptions;
 }
 
 export class ListMovie {
