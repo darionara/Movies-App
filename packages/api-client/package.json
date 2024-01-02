@@ -1,0 +1,1 @@
+{ "name": "api-client", "main": "./index.ts", "types": "./index.ts", "dependencies": { "typescript": "latest" } }
