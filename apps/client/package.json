@@ -16,6 +16,7 @@
     "@heroicons/react": "^2.0.18",
     "@reduxjs/toolkit": "^1.9.7",
     "api-client": "*",
+    "@tanstack/react-query": "^5.17.0",
     "axios": "^1.6.2",
     "clsx": "^2.0.0",
     "common-types": "*",

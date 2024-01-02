@@ -3,6 +3,7 @@ import './globals.css';
 import { Open_Sans } from 'next/font/google';
 
 import ReduxProvider from '@/store/ReduxProvider';
+import QueryProvider from '@/app/providers';
 
 export const metadata: Metadata = {
   title: 'Movies App',
@@ -22,7 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={openSans.className}>
       <body>
-        <ReduxProvider>{children}</ReduxProvider>
+        <QueryProvider>
+          <ReduxProvider>
+            {children}
+          </ReduxProvider>
+        </QueryProvider>
       </body>
     </html>
   );
