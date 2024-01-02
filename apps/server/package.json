@@ -28,6 +28,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.1.11",
     "axios": "^1.4.0",
+    "common-types": "*",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
   },

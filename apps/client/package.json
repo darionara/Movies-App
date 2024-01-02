@@ -18,6 +18,7 @@
     "api-client": "*",
     "axios": "^1.6.2",
     "clsx": "^2.0.0",
+    "common-types": "*",
     "heroicons": "^2.0.18",
     "next": "^13.4.1",
     "rc-slider": "^10.2.0",

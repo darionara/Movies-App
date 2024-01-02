@@ -12,6 +12,7 @@ This Turborepo includes the following packages/apps:
 - `client`: a [Next.js](https://nextjs.org/) app
 - `server`: a [NestJS](https://nestjs.com/) app
 - `api-client`: auto generated `axios-typescript` client to fetch data from `server` app to `client`
+- `common-types`: package with types shared between `server` and `client` apps.
 - `tsconfig`: `tsconfig.json`s used throughout the monorepo
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
