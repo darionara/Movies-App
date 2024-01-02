@@ -11,7 +11,7 @@ This Turborepo includes the following packages/apps:
 
 - `client`: a [Next.js](https://nextjs.org/) app
 - `server`: a [NestJS](https://nestjs.com/) app
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+- `api-client`: auto generated `axios-typescript` client to fetch data from `server` app to `client`
 - `tsconfig`: `tsconfig.json`s used throughout the monorepo
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
@@ -40,6 +40,7 @@ To develop all apps and packages, follow the steps:
   - Create account on [TMDB](https://www.themoviedb.org/)
   - create `.env` file inside `./apps/server` - you can just run the command `cp ./apps/server/.example.env ./apps/server/.env` in the terminal.
   - Go to [your account's settings](https://www.themoviedb.org/settings/api), copy your API key and pass it to `TMDB_API_KEY` variable.
+- Make sure `.env.local` file exists in your `app/client` and has every necessary variables declared - run `cp ./apps/client/.example.env ./apps/client/.env.local`.
 - Run the following command:
 
 ```sh
@@ -60,6 +61,34 @@ npm run dev:server
 ```
 
 and go to `http://localhost:3001/api` in the browser.
+
+### Api client internal package
+
+Api client package is auto generated [typescript-axios](https://openapi-generator.tech/docs/generators/typescript-axios/) api client from OpenAPI to consume data from `server` app inside `client` app. It's fully typed, configured and ready to use.
+
+Example of usage in `client` app:
+
+```ts
+import { apiClient } from '@/api';
+
+const response = await apiClient.topRatedControllerFindAll({ genres: [1, 2, 3], sort: 'exampleAsc' });
+```
+
+To generate/update `api-client` package you need to have Docker installed. then:
+```sh
+# Run at least server:
+npm run dev
+# or
+npm run dev:server
+
+# Run generation command:
+npm run generate-and-update-api-client
+
+# Install packages:
+npm install
+```
+
+In case VSC cannot see the changes restart TS server.
 
 ### Remote Caching
 
