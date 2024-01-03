@@ -1,8 +1,8 @@
 import type { ComponentPropsWithoutRef, FC } from 'react';
-import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { useQuery } from '@tanstack/react-query';
 
 import MovieTile from '@/ui/MovieTile/MovieTile';
 import { RootState } from '@/store/store';
@@ -10,25 +10,22 @@ import { RootState } from '@/store/store';
 type MoviesListProps = ComponentPropsWithoutRef<'ul'>;
 
 const MoviesList: FC<MoviesListProps> = ({ className, ...props }) => {
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
   const isGrid = useSelector((state: RootState) => state.main.isGrid);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/top-rated');
-        setMovies(response.data.data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+  const {
+    isPending,
+    error,
+    data: movies,
+  } = useQuery({
+    queryKey: ['movies'],
+    queryFn: async () =>
+      await axios
+        .get('http://localhost:3001/top-rated')
+        .then((response) => response.data.data),
+  });
 
-  loading && <p>Loading...</p>;
+  if (isPending) return 'Loading...';
+  if (error) return `Oops... ${error.message} :(`;
 
   return (
     <ul
@@ -42,7 +39,7 @@ const MoviesList: FC<MoviesListProps> = ({ className, ...props }) => {
       )}
       {...props}
     >
-      {movies.map((movie, index) => {
+      {movies?.map((movie, index) => {
         return (
           <li
             key={movie.id}
