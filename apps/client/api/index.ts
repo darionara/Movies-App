@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { type AxiosRequestConfig } from 'axios';
 import { DefaultApi } from 'api-client';
 
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -18,4 +18,4 @@ const apiClient = new DefaultApi(
   axiosClient,
 );
 
-export { apiClient };
+export default apiClient;
