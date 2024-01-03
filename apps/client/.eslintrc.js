@@ -9,7 +9,6 @@ module.exports = {
     'plugin:storybook/recommended',
     'airbnb',
     'airbnb-typescript',
-    'plugin:@typescript-eslint/recommended',
     'next/core-web-vitals',
     'prettier',
   ],
@@ -23,7 +22,7 @@ module.exports = {
     sourceType: 'module',
     ecmaVersion: 2015,
   },
-  plugins: ['prettier', '@typescript-eslint'],
+  plugins: ['prettier'],
   rules: {
     'prettier/prettier': 'error',
     'import/extensions': 'off',
