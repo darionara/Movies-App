@@ -23,6 +23,8 @@
     "packages/*"
   ],
   "dependencies": {
+    "@nestjs/common": "^10.3.0",
+    "@nestjs/platform-express": "^10.3.0",
     "@openapitools/openapi-generator-cli": "^2.7.0"
   }
 }
