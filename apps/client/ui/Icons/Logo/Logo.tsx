@@ -2,7 +2,7 @@ import type { FC } from 'react';
 
 import { IconProps } from '@/types/IconType';
 
-const LogoIcon: FC<IconProps> = (props) => (
+const LogoIcon: FC<IconProps> = ({ ...props }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={151}

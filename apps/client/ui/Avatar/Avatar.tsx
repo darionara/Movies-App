@@ -16,7 +16,10 @@ const Avatar: FC<AvatarProps> = ({
   ...props
 }) => {
   return (
-    <div className={clsx('flex items-center min-w-[40px]', className)} {...props}>
+    <div
+      className={clsx('flex items-center min-w-[40px]', className)}
+      {...props}
+    >
       <Image
         src={avatarSrc}
         alt="Avatar"

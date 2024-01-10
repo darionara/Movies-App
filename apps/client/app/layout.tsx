@@ -24,9 +24,7 @@ export default function RootLayout({
     <html lang="en" className={openSans.className}>
       <body>
         <QueryProvider>
-          <ReduxProvider>
-            {children}
-          </ReduxProvider>
+          <ReduxProvider>{children}</ReduxProvider>
         </QueryProvider>
       </body>
     </html>

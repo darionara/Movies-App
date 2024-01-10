@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import SearchIcon from '@/ui/Icons/Search/Search';
 
-type InputSearchProps = ComponentPropsWithoutRef<'div'>;
+type InputSearchProps = ComponentPropsWithoutRef<'input'>;
 
 const InputSearch: FC<InputSearchProps> = ({
   placeholder = 'Search',
@@ -11,7 +11,10 @@ const InputSearch: FC<InputSearchProps> = ({
   ...props
 }) => {
   return (
-    <div className={clsx('relative flex items-center min-w-[135px]', className)} {...props}>
+    <div
+      className={clsx('relative flex items-center min-w-[135px]', className)}
+      {...props}
+    >
       <div className="absolute pl-4">
         <SearchIcon />
       </div>

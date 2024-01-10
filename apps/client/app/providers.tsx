@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 type QueryProviderProps = {
   children: ReactNode;
-}
+};
 
 const QueryProvider: FC<QueryProviderProps> = ({ children }) => {
   const [queryClient] = useState(() => new QueryClient());
@@ -14,6 +14,6 @@ const QueryProvider: FC<QueryProviderProps> = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
-}
+};
 
 export default QueryProvider;

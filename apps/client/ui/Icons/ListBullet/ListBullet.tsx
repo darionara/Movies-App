@@ -1,7 +1,8 @@
 import type { FC } from 'react';
+
 import { IconProps } from '@/types/IconType';
 
-const ListBulletIcon: FC<IconProps> = (props) => {
+const ListBulletIcon: FC<IconProps> = ({ ...props }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
