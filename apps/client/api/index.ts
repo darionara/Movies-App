@@ -18,4 +18,5 @@ const apiClient = new DefaultApi(
   axiosClient,
 );
 
+export * from 'api-client';
 export default apiClient;
