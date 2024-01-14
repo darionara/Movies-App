@@ -35,8 +35,8 @@ export class TopRatedQuery {
 }
 
 export class ListMovie {
-  @ApiProperty({ description: 'Url to backdrop image' })
-  backdrop_image: string;
+  @ApiProperty({ description: 'Url to poster image' })
+  poster_image: string;
 
   @ApiProperty({ example: 238 })
   id: number;
