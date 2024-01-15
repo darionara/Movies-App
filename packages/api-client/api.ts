@@ -30,11 +30,11 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
  */
 export interface ListMovie {
     /**
-     * Url to backdrop image
+     * Url to poster image
      * @type {string}
      * @memberof ListMovie
      */
-    'backdrop_image': string;
+    'poster_image': string;
     /**
      * 
      * @type {number}

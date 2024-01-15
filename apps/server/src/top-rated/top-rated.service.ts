@@ -34,14 +34,24 @@ export class TopRatedService {
         .get('/movie/top_rated', { params: this.formatQuery(query) })
         .pipe(
           catchError((error: AxiosError) => {
-            throw `Error jaki: ${error.message}`;
+            throw `Error: ${error.message}`;
           }),
         ),
     );
 
+    const { data: configData } = await firstValueFrom(
+      this.httpService.get('/configuration').pipe(
+        catchError((error: AxiosError) => {
+          throw `Error: ${error.message}`;
+        }),
+      ),
+    );
+
+    const { secure_base_url: imagesBaseUrl, poster_sizes } = configData.images;
+
     const responseBody: TopRated = {
       data: data.results.map((result: any = {}) => ({
-        backdrop_image: result.backdrop_path,
+        poster_image: `${imagesBaseUrl}${poster_sizes[3]}${result.poster_path}`,
         id: result.id,
         rate: result.vote_average * 10,
         release_date: result.release_date,
