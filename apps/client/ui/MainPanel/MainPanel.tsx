@@ -1,7 +1,9 @@
 import type { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
+import apiClient from '@/api';
 import MoviesList from '@/ui/MoviesList/MoviesList';
 import Button from '@/ui/Button/Button';
 import SortingSelect from '@/ui//SortingSelect/SortingSelect';
@@ -30,6 +32,25 @@ const MainPanel: FC = () => {
     dispatch(setListLayout());
   };
   const isGrid = useSelector((state: RootState) => state.main.isGrid);
+
+  const {
+    data,
+    error,
+    isFetching,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
+    queryKey: ['movies'],
+    queryFn: ({ pageParam }) =>
+      apiClient.topRatedControllerFindAll({ page: pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      const nextPage = lastPage.data.meta.page + 1;
+      return nextPage <= lastPage.data.meta.total_pages ? nextPage : undefined;
+    },
+  });
+
   return (
     <main className="w-full">
       <header className="flex items-center justify-between">
@@ -54,10 +75,24 @@ const MainPanel: FC = () => {
         </div>
       </header>
       <section>
-        <MoviesList className="py-5" />
-        <Button variant="secondary" className="mt-9">
-          Load more
-        </Button>
+        {isFetching && 'Loading...'}
+        {error && `Oops... ${error.message} :(`}
+        {!isFetching && !error && (
+          <MoviesList
+            className="py-5"
+            movies={data.pages.flatMap((page) => page.data.data)}
+          />
+        )}
+        {hasNextPage && (
+          <Button
+            variant="secondary"
+            className="mt-9"
+            onClick={() => fetchNextPage()}
+            disabled={isFetchingNextPage}
+          >
+            {isFetchingNextPage ? 'Loading more...' : 'Load more'}
+          </Button>
+        )}
       </section>
     </main>
   );
