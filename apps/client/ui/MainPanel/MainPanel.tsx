@@ -1,7 +1,8 @@
-import type { FC } from 'react';
+import { FC, useMemo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import type { ListMovie } from 'api-client';
 
 import apiClient from '@/api';
 import MoviesList from '@/ui/MoviesList/MoviesList';
@@ -25,18 +26,18 @@ const options = [
 
 const MainPanel: FC = () => {
   const dispatch = useDispatch();
-  const handleGridLayout = () => {
+  const handleGridLayout = useCallback(() => {
     dispatch(setGridLayout());
-  };
-  const handleListLayout = () => {
+  }, [dispatch]);
+  const handleListLayout = useCallback(() => {
     dispatch(setListLayout());
-  };
+  }, [dispatch]);
   const isGrid = useSelector((state: RootState) => state.main.isGrid);
 
   const {
     data,
     error,
-    isFetching,
+    isLoading,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
@@ -50,6 +51,15 @@ const MainPanel: FC = () => {
       return nextPage <= lastPage.data.meta.total_pages ? nextPage : undefined;
     },
   });
+
+  const movies = useMemo(() => {
+    if (!data) return [];
+    let allMovies: ListMovie[] = [];
+    data.pages.forEach((page) => {
+      allMovies = allMovies.concat(page.data.data);
+    });
+    return allMovies;
+  }, [data]);
 
   return (
     <main className="w-full">
@@ -75,13 +85,10 @@ const MainPanel: FC = () => {
         </div>
       </header>
       <section>
-        {isFetching && 'Loading...'}
+        {isLoading && 'Loading...'}
         {error && `Oops... ${error.message} :(`}
-        {!isFetching && !error && (
-          <MoviesList
-            className="py-5"
-            movies={data.pages.flatMap((page) => page.data.data)}
-          />
+        {!isLoading && !error && (
+          <MoviesList className="py-5" movies={movies} />
         )}
         {hasNextPage && (
           <Button
