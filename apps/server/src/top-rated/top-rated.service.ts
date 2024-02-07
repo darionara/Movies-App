@@ -31,7 +31,7 @@ export class TopRatedService {
   async findAll(query: TopRatedQuery): Promise<TopRated> {
     const { data } = await firstValueFrom(
       this.httpService
-        .get('/movie/top_rated', { params: this.formatQuery(query) })
+        .get('/discover/movie', { params: this.formatQuery(query) })
         .pipe(
           catchError((error: AxiosError) => {
             throw `Error: ${error.message}`;
