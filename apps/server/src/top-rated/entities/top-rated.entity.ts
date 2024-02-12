@@ -6,8 +6,9 @@ export class TopRatedQuery {
   page: number;
 
   @ApiPropertyOptional({
-    description: 'Keywords to filter list - words separated with "|" symbol',
-    example: 'bat|spider',
+    description:
+      'List of keywords IDs to filter with - IDs separated with "|" symbol',
+    example: '158129',
   })
   keywords: string;
 

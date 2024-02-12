@@ -115,7 +115,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @summary Get list of favorite movies
          * @param {number} [page] Current page
-         * @param {string} [keywords] Keywords to filter list - words separated with \&quot;|\&quot; symbol
+         * @param {string} [keywords] List of keywords IDs to filter with - IDs separated with \&quot;|\&quot; symbol
          * @param {number} [minUserVotes] Minimum count of user\&#39;s votes
          * @param {string} [averageVotes] The range of minimum and maximum votes
          * @param {string} [genres] List of genres IDs to filter with. Ids separated with \&quot;|\&quot; symbol
@@ -185,7 +185,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * 
          * @summary Get list of favorite movies
          * @param {number} [page] Current page
-         * @param {string} [keywords] Keywords to filter list - words separated with \&quot;|\&quot; symbol
+         * @param {string} [keywords] List of keywords IDs to filter with - IDs separated with \&quot;|\&quot; symbol
          * @param {number} [minUserVotes] Minimum count of user\&#39;s votes
          * @param {string} [averageVotes] The range of minimum and maximum votes
          * @param {string} [genres] List of genres IDs to filter with. Ids separated with \&quot;|\&quot; symbol
@@ -236,7 +236,7 @@ export interface DefaultApiTopRatedControllerFindAllRequest {
     readonly page?: number
 
     /**
-     * Keywords to filter list - words separated with \&quot;|\&quot; symbol
+     * List of keywords IDs to filter with - IDs separated with \&quot;|\&quot; symbol
      * @type {string}
      * @memberof DefaultApiTopRatedControllerFindAll
      */
