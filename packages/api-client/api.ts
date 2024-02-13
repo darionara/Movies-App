@@ -26,6 +26,38 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 /**
  * 
  * @export
+ * @interface Genre
+ */
+export interface Genre {
+    /**
+     * Genre id
+     * @type {number}
+     * @memberof Genre
+     */
+    'id': number;
+    /**
+     * Genre name
+     * @type {string}
+     * @memberof Genre
+     */
+    'name': string;
+}
+/**
+ * 
+ * @export
+ * @interface GenresList
+ */
+export interface GenresList {
+    /**
+     * List of genres
+     * @type {Array<Genre>}
+     * @memberof GenresList
+     */
+    'genres': Array<Genre>;
+}
+/**
+ * 
+ * @export
  * @interface ListMovie
  */
 export interface ListMovie {
@@ -113,6 +145,36 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
+         * @summary Get list of genres
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        genreControllerFindAll: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/genre`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Get list of favorite movies
          * @param {number} [page] Current page
          * @param {string} [keywords] List of keywords IDs to filter with - IDs separated with \&quot;|\&quot; symbol
@@ -183,6 +245,18 @@ export const DefaultApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @summary Get list of genres
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async genreControllerFindAll(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenresList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.genreControllerFindAll(options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.genreControllerFindAll']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Get list of favorite movies
          * @param {number} [page] Current page
          * @param {string} [keywords] List of keywords IDs to filter with - IDs separated with \&quot;|\&quot; symbol
@@ -209,6 +283,15 @@ export const DefaultApiFp = function(configuration?: Configuration) {
 export const DefaultApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = DefaultApiFp(configuration)
     return {
+        /**
+         * 
+         * @summary Get list of genres
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        genreControllerFindAll(options?: RawAxiosRequestConfig): AxiosPromise<GenresList> {
+            return localVarFp.genreControllerFindAll(options).then((request) => request(axios, basePath));
+        },
         /**
          * 
          * @summary Get list of favorite movies
@@ -278,6 +361,17 @@ export interface DefaultApiTopRatedControllerFindAllRequest {
  * @extends {BaseAPI}
  */
 export class DefaultApi extends BaseAPI {
+    /**
+     * 
+     * @summary Get list of genres
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public genreControllerFindAll(options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).genreControllerFindAll(options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @summary Get list of favorite movies

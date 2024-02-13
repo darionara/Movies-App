@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 
 import configuration from './config/configuration';
 import { TopRatedModule } from './top-rated/top-rated.module';
+import { GenreModule } from './genre/genre.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { TopRatedModule } from './top-rated/top-rated.module';
       load: [configuration],
     }),
     TopRatedModule,
+    GenreModule,
   ],
 })
 export class AppModule {}
