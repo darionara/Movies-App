@@ -61,6 +61,12 @@ const MainPanel: FC = () => {
     return allMovies;
   }, [data]);
 
+  const renderList = () => {
+    if (isLoading) return 'Loading...';
+    if (error) return `Oops... ${error.message} :(`;
+    return <MoviesList className="py-5" movies={movies} />;
+  };
+
   return (
     <main className="w-full">
       <header className="flex items-center justify-between">
@@ -85,11 +91,7 @@ const MainPanel: FC = () => {
         </div>
       </header>
       <section>
-        {isLoading && 'Loading...'}
-        {error && `Oops... ${error.message} :(`}
-        {!isLoading && !error && (
-          <MoviesList className="py-5" movies={movies} />
-        )}
+        {renderList()}
         {hasNextPage && (
           <Button
             variant="secondary"
