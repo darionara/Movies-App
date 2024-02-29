@@ -1,7 +1,10 @@
-import type { FC } from 'react';
+import { FC, useMemo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import type { ListMovie } from 'api-client';
 
+import apiClient from '@/api';
 import MoviesList from '@/ui/MoviesList/MoviesList';
 import Button from '@/ui/Button/Button';
 import SortingSelect from '@/ui//SortingSelect/SortingSelect';
@@ -23,13 +26,47 @@ const options = [
 
 const MainPanel: FC = () => {
   const dispatch = useDispatch();
-  const handleGridLayout = () => {
+  const handleGridLayout = useCallback(() => {
     dispatch(setGridLayout());
-  };
-  const handleListLayout = () => {
+  }, [dispatch]);
+  const handleListLayout = useCallback(() => {
     dispatch(setListLayout());
-  };
+  }, [dispatch]);
   const isGrid = useSelector((state: RootState) => state.main.isGrid);
+
+  const {
+    data,
+    error,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
+    queryKey: ['movies'],
+    queryFn: ({ pageParam }) =>
+      apiClient.topRatedControllerFindAll({ page: pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      const nextPage = lastPage.data.meta.page + 1;
+      return nextPage <= lastPage.data.meta.total_pages ? nextPage : undefined;
+    },
+  });
+
+  const movies = useMemo(() => {
+    if (!data) return [];
+    let allMovies: ListMovie[] = [];
+    data.pages.forEach((page) => {
+      allMovies = allMovies.concat(page.data.data);
+    });
+    return allMovies;
+  }, [data]);
+
+  const renderList = () => {
+    if (isLoading) return 'Loading...';
+    if (error) return `Oops... ${error.message} :(`;
+    return <MoviesList className="py-5" movies={movies} />;
+  };
+
   return (
     <main className="w-full">
       <header className="flex items-center justify-between">
@@ -54,10 +91,17 @@ const MainPanel: FC = () => {
         </div>
       </header>
       <section>
-        <MoviesList className="py-5" />
-        <Button variant="secondary" className="mt-9">
-          Load more
-        </Button>
+        {renderList()}
+        {hasNextPage && (
+          <Button
+            variant="secondary"
+            className="mt-9"
+            onClick={() => fetchNextPage()}
+            disabled={isFetchingNextPage}
+          >
+            {isFetchingNextPage ? 'Loading more...' : 'Load more'}
+          </Button>
+        )}
       </section>
     </main>
   );
