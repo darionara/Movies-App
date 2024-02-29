@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import clsx from 'clsx';
 
 import MoviesList from '@/ui/MoviesList/MoviesList';
 import Button from '@/ui/Button/Button';
@@ -8,7 +9,6 @@ import ListBulletIcon from '@/ui/Icons/ListBullet/ListBullet';
 import SquaresIcon from '@/ui/Icons/Squares/Squares';
 import { setGridLayout, setListLayout } from '@/store/MainSlice';
 import { RootState } from '@/store/store';
-import clsx from 'clsx';
 
 const options = [
   'Popularity Descending',

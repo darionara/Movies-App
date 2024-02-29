@@ -2,8 +2,6 @@ import type { FC, ComponentPropsWithoutRef } from 'react';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
-// TODO: remove after fetching the image url
-import movie1 from '@/public/movie1.png';
 
 import { RootState } from '@/store/store';
 
@@ -20,7 +18,7 @@ const MovieTile: FC<MovieTileProps> = ({
   year,
   rating,
   place,
-  //imageSrc,
+  imageSrc,
   className,
   ...props
 }) => {
@@ -29,11 +27,10 @@ const MovieTile: FC<MovieTileProps> = ({
     <div className={clsx('relative', className)} {...props}>
       <div className="relative pb-[150%]">
         <Image
-          src={movie1}
+          src={imageSrc}
           alt={title}
           className="relative rounded-xl"
           fill
-          //sizes="(max-width: 500px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw"
         />
       </div>
       <div
@@ -66,7 +63,7 @@ const MovieTile: FC<MovieTileProps> = ({
   ) : (
     <div className="flex items-center gap-4">
       <Image
-        src={movie1}
+        src={imageSrc}
         alt={title}
         className="rounded-xl"
         width={80}
