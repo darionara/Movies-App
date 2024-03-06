@@ -13,17 +13,6 @@ import SquaresIcon from '@/ui/Icons/Squares/Squares';
 import { setGridLayout, setListLayout } from '@/store/MainSlice';
 import { RootState } from '@/store/store';
 
-const options = [
-  'Popularity Descending',
-  'Popularity Ascending',
-  'Rating Descending',
-  'Rating Ascending',
-  'Release Date Descending',
-  'Release Date Ascending',
-  'Title (A-Z)',
-  'Title (Z-A)',
-];
-
 const MainPanel: FC = () => {
   const dispatch = useDispatch();
   const handleGridLayout = useCallback(() => {
@@ -33,6 +22,7 @@ const MainPanel: FC = () => {
     dispatch(setListLayout());
   }, [dispatch]);
   const isGrid = useSelector((state: RootState) => state.main.isGrid);
+  const selected = useSelector((state: RootState) => state.main.selected);
 
   const {
     data,
@@ -42,9 +32,9 @@ const MainPanel: FC = () => {
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ['movies'],
+    queryKey: ['movies', selected],
     queryFn: ({ pageParam }) =>
-      apiClient.topRatedControllerFindAll({ page: pageParam }),
+      apiClient.topRatedControllerFindAll({ page: pageParam, sort: selected }),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
       const nextPage = lastPage.data.meta.page + 1;
@@ -73,7 +63,7 @@ const MainPanel: FC = () => {
         <h2 className="text-2xl font-bold">Top Rated</h2>
         <div className="flex gap-1.5">
           <span className="text-sm">Sort by:</span>
-          <SortingSelect options={options} className="mr-2.5 pr-2" />
+          <SortingSelect className="mr-2.5 pr-2" />
           <ListBulletIcon
             onClick={handleListLayout}
             className={clsx(
