@@ -9,6 +9,13 @@ import { TopRated, TopRatedQuery } from './entities/top-rated.entity';
 export class TopRatedService {
   constructor(private readonly httpService: HttpService) {}
 
+  private staticQueries = {
+    include_adult: false,
+    include_video: false,
+    language: 'en-US',
+    without_genres: '99,10755',
+  };
+
   private formatQuery(query: TopRatedQuery) {
     const { average_votes, genres, keywords, min_user_votes, page, sort } =
       query;
@@ -25,6 +32,7 @@ export class TopRatedService {
       'vote_count.gte': min_user_votes,
       page,
       sort_by: sort,
+      ...this.staticQueries,
     };
   }
 
