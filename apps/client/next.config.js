@@ -2,6 +2,12 @@ module.exports = {
   reactStrictMode: true,
   transpilePackages: ['api-client'],
   images: {
-    remotePatterns: ['image.tmdb.org'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'image.tmdb.org',
+        port: ''
+      }
+    ],
   }
 };

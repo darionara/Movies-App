@@ -2,29 +2,38 @@ import type { ComponentPropsWithoutRef } from 'react';
 import React, { useState, useEffect, useRef, KeyboardEvent } from 'react';
 import clsx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
+import { SortingOptions } from 'common-types';
 
 import { selectSortOption } from '@/store/MainSlice';
 import { RootState } from '@/store/store';
 import ArrowDownIcon from '@/ui/Icons/ArrowDown/ArrowDown';
 
-type SortingSelectProps = ComponentPropsWithoutRef<'select'> & {
-  options: string[];
-};
+type SortingSelectProps = ComponentPropsWithoutRef<'select'>;
 
-const SortingSelect: React.FC<SortingSelectProps> = ({
-  options,
-  className,
-}) => {
+const mapOptions: { key: SortingOptions; label: string }[] = [
+  { key: 'popularity.asc', label: 'Popularity Ascending' },
+  { key: 'popularity.desc', label: 'Popularity Descending' },
+  { key: 'vote_average.asc', label: 'Rating Ascending' },
+  { key: 'vote_average.desc', label: 'Rating Descending' },
+  { key: 'primary_release_date.asc', label: 'Release Date Ascending' },
+  { key: 'primary_release_date.desc', label: 'Release Date Descending' },
+  { key: 'revenue.asc', label: 'Revenue Ascending' },
+  { key: 'revenue.desc', label: 'Revenue Descending' },
+];
+
+const SortingSelect: React.FC<SortingSelectProps> = ({ className }) => {
   const dispatch = useDispatch();
   const selected = useSelector((state: RootState) => state.main.selected);
   const [isOpen, setIsOpen] = useState(false);
-  const [focusedIndex, setFocusedIndex] = useState(options.indexOf(selected));
+  const [focusedIndex, setFocusedIndex] = useState(
+    mapOptions.findIndex(({ key }) => key === selected),
+  );
 
   const selectRef = useRef<HTMLDivElement>(null);
   const ulRef = useRef<HTMLUListElement>(null);
   const liRefs = useRef<(HTMLLIElement | null)[]>([]);
 
-  function selectOption(option: string) {
+  function selectOption(option: SortingOptions) {
     dispatch(selectSortOption(option));
     setIsOpen(false);
   }
@@ -67,13 +76,15 @@ const SortingSelect: React.FC<SortingSelectProps> = ({
         break;
       case 'ArrowDown':
         setFocusedIndex((prevIndex) =>
-          prevIndex >= options.length - 1 ? options.length - 1 : prevIndex + 1,
+          prevIndex >= mapOptions.length - 1
+            ? mapOptions.length - 1
+            : prevIndex + 1,
         );
         break;
       case 'Enter':
       case ' ':
-        if (focusedIndex >= 0 && focusedIndex < options.length) {
-          selectOption(options[focusedIndex]);
+        if (focusedIndex >= 0 && focusedIndex < mapOptions.length) {
+          selectOption(mapOptions[focusedIndex].key);
         }
         setFocusedIndex(focusedIndex);
         break;
@@ -100,7 +111,9 @@ const SortingSelect: React.FC<SortingSelectProps> = ({
         onKeyDown={handleKeyDown}
         type="button"
       >
-        <span className="pr-1.5 text-sm font-bold">{selected}</span>
+        <span className="pr-1.5 text-sm font-bold">
+          {mapOptions.find((option) => option.key === selected)?.label}
+        </span>
         <ArrowDownIcon
           className={clsx(
             'transform transition-transform duration-100 ease-in-out',
@@ -113,25 +126,25 @@ const SortingSelect: React.FC<SortingSelectProps> = ({
           className="absolute right-0 top-full z-10 mt-1 w-48 rounded-md border bg-white"
           ref={ulRef}
         >
-          {options.map((option, index) => (
+          {mapOptions.map((option, index) => (
             <li
               role="menuitem"
-              key={option}
+              key={option.key}
               className={clsx(
                 'cursor-pointer px-4 py-2 text-xs text-black',
                 'transition-ease-in-out p-3 transition-colors duration-200',
                 {
-                  'font-bold': selected === option,
+                  'font-bold': selected === option.key,
                   'bg-gray-300': focusedIndex === index,
                 },
               )}
-              onClick={() => selectOption(option)}
-              onKeyDown={() => selectOption(option)}
+              onClick={() => selectOption(option.key)}
+              onKeyDown={() => selectOption(option.key)}
               onMouseEnter={() => setFocusedIndex(index)}
               // eslint-disable-next-line no-return-assign
               ref={(li) => (liRefs.current[index] = li)}
             >
-              {option}
+              {option.label}
             </li>
           ))}
         </ul>
