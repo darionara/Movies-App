@@ -127,6 +127,50 @@ export interface ListMovie {
 /**
  * 
  * @export
+ * @interface SearchMovie
+ */
+export interface SearchMovie {
+    /**
+     * Movie id
+     * @type {number}
+     * @memberof SearchMovie
+     */
+    'id': number;
+    /**
+     * Movie title
+     * @type {string}
+     * @memberof SearchMovie
+     */
+    'title': string;
+    /**
+     * Url to poster image
+     * @type {string}
+     * @memberof SearchMovie
+     */
+    'poster_image': string;
+    /**
+     * Date of release in format: YYYY-MM-DD
+     * @type {string}
+     * @memberof SearchMovie
+     */
+    'release_date': string;
+}
+/**
+ * 
+ * @export
+ * @interface SearchMovieList
+ */
+export interface SearchMovieList {
+    /**
+     * List of movies
+     * @type {Array<SearchMovie>}
+     * @memberof SearchMovieList
+     */
+    'movies': Array<SearchMovie>;
+}
+/**
+ * 
+ * @export
  * @interface TopRated
  */
 export interface TopRated {
@@ -216,6 +260,43 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'query' is not null or undefined
             assertParamExists('keywordControllerFindAll', 'query', query)
             const localVarPath = `/keyword`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (query !== undefined) {
+                localVarQueryParameter['query'] = query;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get list of searched movies
+         * @param {string} query Query
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchMovieControllerFindAll: async (query: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'query' is not null or undefined
+            assertParamExists('searchMovieControllerFindAll', 'query', query)
+            const localVarPath = `/search-movie`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -339,6 +420,19 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Get list of searched movies
+         * @param {string} query Query
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async searchMovieControllerFindAll(query: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SearchMovieList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchMovieControllerFindAll(query, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.searchMovieControllerFindAll']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Get list of favorite movies
          * @param {number} [page] Current page
          * @param {string} [keywords] List of keywords IDs to filter with - IDs separated with \&quot;|\&quot; symbol
@@ -386,6 +480,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary Get list of searched movies
+         * @param {DefaultApiSearchMovieControllerFindAllRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchMovieControllerFindAll(requestParameters: DefaultApiSearchMovieControllerFindAllRequest, options?: RawAxiosRequestConfig): AxiosPromise<SearchMovieList> {
+            return localVarFp.searchMovieControllerFindAll(requestParameters.query, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Get list of favorite movies
          * @param {DefaultApiTopRatedControllerFindAllRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -407,6 +511,20 @@ export interface DefaultApiKeywordControllerFindAllRequest {
      * Query
      * @type {string}
      * @memberof DefaultApiKeywordControllerFindAll
+     */
+    readonly query: string
+}
+
+/**
+ * Request parameters for searchMovieControllerFindAll operation in DefaultApi.
+ * @export
+ * @interface DefaultApiSearchMovieControllerFindAllRequest
+ */
+export interface DefaultApiSearchMovieControllerFindAllRequest {
+    /**
+     * Query
+     * @type {string}
+     * @memberof DefaultApiSearchMovieControllerFindAll
      */
     readonly query: string
 }
@@ -488,6 +606,18 @@ export class DefaultApi extends BaseAPI {
      */
     public keywordControllerFindAll(requestParameters: DefaultApiKeywordControllerFindAllRequest, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).keywordControllerFindAll(requestParameters.query, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get list of searched movies
+     * @param {DefaultApiSearchMovieControllerFindAllRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public searchMovieControllerFindAll(requestParameters: DefaultApiSearchMovieControllerFindAllRequest, options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).searchMovieControllerFindAll(requestParameters.query, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

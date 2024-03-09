@@ -9,7 +9,7 @@ import { TopRated, TopRatedQuery } from './entities/top-rated.entity';
 export class TopRatedService {
   constructor(private readonly httpService: HttpService) {}
 
-  private staticQueries = {
+  private readonly staticQueries = {
     include_adult: false,
     include_video: false,
     language: 'en-US',
